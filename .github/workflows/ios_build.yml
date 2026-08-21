@@ -24,20 +24,6 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x gradlew
 
-    - name: Cache Kotlin Native
-      uses: actions/cache@v4
-      with:
-        path: ~/.konan
-        key: ${{ runner.os }}-konan-${{ hashFiles('**/*.gradle.kts') }}
-        restore-keys: ${{ runner.os }}-konan-
-
-    # Do không có Mac vật lý để ký code (Code Signing), 
-    # bước này sẽ build một tệp .app (Simulator) hoặc .ipa không ký (Unsigned).
-    # Để cài lên iPhone thật, bạn cần thêm chứng chỉ Apple P12 vào GitHub Secrets.
-    
-    - name: Build shared framework
-      run: ./gradlew :composeApp:assembleComposeAppReleaseFrameworkIosArm64
-
     - name: Build Xcode Project
       run: |
         xcodebuild -project iosApp/iosApp.xcodeproj \
@@ -47,7 +33,8 @@ jobs:
                    -derivedDataPath build/ios \
                    CODE_SIGN_IDENTITY="" \
                    CODE_SIGNING_REQUIRED=NO \
-                   CODE_SIGNING_ALLOWED=NO
+                   CODE_SIGNING_ALLOWED=NO \
+                   COMPILER_INDEX_STORE_ENABLE=NO
 
     - name: Zip .app to .ipa (Unsigned)
       run: |
