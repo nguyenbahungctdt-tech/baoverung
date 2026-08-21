@@ -46,33 +46,24 @@ jobs:
         magick convert $ICON_SRC -resize 180x180 $ICON_DEST/icon-180.png
         magick convert $ICON_SRC -resize 1024x1024 $ICON_DEST/icon-1024.png
         
-        # Create Contents.json for Xcode
+        # Create Contents.json for Xcode with proper structure
         cat > $ICON_DEST/Contents.json << 'EOF'
         {
           "images" : [
-            { "idiom" : "iphone", "size" : "20x20", "scale" : "2x", "filename" : "icon-40.png" },
-            { "idiom" : "iphone", "size" : "20x20", "scale" : "3x", "filename" : "icon-60.png" },
-            { "idiom" : "iphone", "size" : "29x29", "scale" : "2x", "filename" : "icon-58.png" },
-            { "idiom" : "iphone", "size" : "29x29", "scale" : "3x", "filename" : "icon-87.png" },
-            { "idiom" : "iphone", "size" : "40x40", "scale" : "2x", "filename" : "icon-80.png" },
-            { "idiom" : "iphone", "size" : "40x40", "scale" : "3x", "filename" : "icon-120.png" },
-            { "idiom" : "iphone", "size" : "60x60", "scale" : "2x", "filename" : "icon-120.png" },
-            { "idiom" : "iphone", "size" : "60x60", "scale" : "3x", "filename" : "icon-180.png" },
-            { "idiom" : "ios-marketing", "size" : "1024x1024", "scale" : "1x", "filename" : "icon-1024.png" }
+            { "filename" : "icon-40.png", "idiom" : "iphone", "scale" : "2x", "size" : "20x20" },
+            { "filename" : "icon-60.png", "idiom" : "iphone", "scale" : "3x", "size" : "20x20" },
+            { "filename" : "icon-58.png", "idiom" : "iphone", "scale" : "2x", "size" : "29x29" },
+            { "filename" : "icon-87.png", "idiom" : "iphone", "scale" : "3x", "size" : "29x29" },
+            { "filename" : "icon-80.png", "idiom" : "iphone", "scale" : "2x", "size" : "40x40" },
+            { "filename" : "icon-120.png", "idiom" : "iphone", "scale" : "3x", "size" : "40x40" },
+            { "filename" : "icon-120.png", "idiom" : "iphone", "scale" : "2x", "size" : "60x60" },
+            { "filename" : "icon-180.png", "idiom" : "iphone", "scale" : "3x", "size" : "60x60" },
+            { "filename" : "icon-1024.png", "idiom" : "ios-marketing", "scale" : "1x", "size" : "1024x1024" }
           ],
-          "info" : { "version" : 1, "author" : "xcode" }
+          "info" : { "author" : "xcode", "version" : 1 }
         }
         EOF
         
-        # Create info.plist (required for asset catalog recognition)
-        cat > $ICON_DEST/Info.plist << 'EOF'
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict/>
-        </plist>
-        EOF
-
         # Verify all icon files were created
         if [ $(ls -1 $ICON_DEST/*.png 2>/dev/null | wc -l) -eq 0 ]; then
           echo "ERROR: No PNG files generated!"

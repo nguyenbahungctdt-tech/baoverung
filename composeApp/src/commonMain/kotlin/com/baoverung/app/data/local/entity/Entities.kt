@@ -1,12 +1,14 @@
 package com.baoverung.app.data.local.entity
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.datetime.Clock
+import kotlinx.serialization.Serializable
 
-// Chúng ta sẽ sử dụng Room KMP cho các Entity này
-// Hiện tại định nghĩa dưới dạng data class thuần túy để chia sẻ logic
-
+@Entity(tableName = "waypoints")
+@Serializable
 data class WaypointEntity(
-    val id: Long = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val title: String,
     val description: String,
     val latitude: Double,
@@ -25,8 +27,10 @@ data class WaypointEntity(
     val isSynced: Boolean = false
 )
 
+@Entity(tableName = "track_logs")
+@Serializable
 data class TrackLogEntity(
-    val id: Long = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val title: String,
     val startTimeUtc: Long,
     val endTimeUtc: Long = 0,
@@ -42,8 +46,10 @@ data class TrackLogEntity(
     val isSynced: Boolean = false
 )
 
+@Entity(tableName = "patrol_logs")
+@Serializable
 data class PatrolLogEntity(
-    val id: Long = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val incidentType: String,
     val discoveryTimeUtc: Long = Clock.System.now().toEpochMilliseconds(),
     val latitude: Double,
@@ -73,8 +79,10 @@ data class PatrolLogEntity(
     val isSynced: Boolean = false
 )
 
+@Entity(tableName = "daily_journals")
+@Serializable
 data class DailyJournalEntity(
-    val id: Long = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val dateStr: String,
     val timestampUtc: Long = Clock.System.now().toEpochMilliseconds(),
     val content: String = "",
@@ -88,8 +96,10 @@ data class DailyJournalEntity(
     val isSynced: Boolean = false
 )
 
+@Entity(tableName = "gis_layers")
+@Serializable
 data class GisLayerEntity(
-    val id: Long = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val name: String,
     val fileType: String,
     val filePath: String,

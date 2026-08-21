@@ -13,16 +13,13 @@ import com.baoverung.app.ui.auth.LoginScreen
 import com.baoverung.app.ui.map.MapScreen
 import com.baoverung.app.ui.map.MeasurementMode
 import com.baoverung.app.ui.navigation.Screen
+import com.baoverung.app.ui.patrol.PatrolLogFormScreen
 import com.baoverung.app.ui.theme.MyApplicationTheme
 import com.baoverung.app.platform.PlatformSettings
-
-import com.baoverung.app.ui.patrol.DailyJournalFormScreen
-import com.baoverung.app.ui.patrol.FloraFaunaFormScreen
-import com.baoverung.app.ui.patrol.NaturalImpactFormScreen
-import com.baoverung.app.ui.patrol.PatrolLogFormScreen
+import com.baoverung.app.ui.MainViewModel
 
 @Composable
-fun App(platformSettings: PlatformSettings) {
+fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
     MyApplicationTheme {
         val navController = rememberNavController()
         var userSession by remember { mutableStateOf(UserSession(isLoggedIn = false)) }
@@ -86,38 +83,6 @@ fun App(platformSettings: PlatformSettings) {
                     centralMeridian = 107.75,
                     zoneDegrees = 3,
                     onSubmitPatrolLog = { _, _, _, _, _, _, _, _, _ -> 
-                        navController.popBackStack()
-                    },
-                    onBack = { navController.popBackStack() }
-                )
-            }
-
-            composable(Screen.FloraFaunaForm.route) {
-                FloraFaunaFormScreen(
-                    currentLocation = null,
-                    userName = userSession.displayName,
-                    onSubmit = { _, _, _, _, _, _, _, _, _, _, _ -> 
-                        navController.popBackStack()
-                    },
-                    onBack = { navController.popBackStack() }
-                )
-            }
-
-            composable(Screen.NaturalImpactForm.route) {
-                NaturalImpactFormScreen(
-                    currentLocation = null,
-                    userName = userSession.displayName,
-                    onSubmit = { _, _, _, _, _, _, _, _, _ -> 
-                        navController.popBackStack()
-                    },
-                    onBack = { navController.popBackStack() }
-                )
-            }
-
-            composable(Screen.DailyJournal.route) {
-                DailyJournalFormScreen(
-                    userName = userSession.displayName,
-                    onSave = { _, _, _, _, _, _ -> 
                         navController.popBackStack()
                     },
                     onBack = { navController.popBackStack() }
