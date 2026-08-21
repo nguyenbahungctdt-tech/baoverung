@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.remember
 import com.baoverung.app.App
+import com.baoverung.app.data.local.AppDatabase
 import com.baoverung.app.data.local.DatabaseBuilder
 import com.baoverung.app.data.local.getAppDatabase
 import com.baoverung.app.platform.PlatformSettings
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val platformSettings = remember { PlatformSettings(applicationContext) }
-            val db = remember { getAppDatabase(DatabaseBuilder(applicationContext).createBuilder()) }
+            val db = remember<AppDatabase> { getAppDatabase(DatabaseBuilder(applicationContext).createBuilder()) }
             val repository = remember { SurveyRepository(db) }
             val viewModel = remember { MainViewModel(repository, MainScope()) }
             
