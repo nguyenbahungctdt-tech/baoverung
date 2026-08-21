@@ -36,22 +36,20 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.serialization.json)
-            // Tạm thời tắt Room để ưu tiên build thành công giao diện
-            // implementation(libs.androidx.room.runtime)
-            // implementation(libs.androidx.sqlite.bundled)
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
-            implementation("io.coil-kt.coil3:coil-compose:3.0.4")
+            implementation(libs.coil.compose)
         }
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.core.ktx)
+        }
+        iosMain.dependencies {
         }
     }
 }
 
 android {
     namespace = "com.baoverung.app.shared"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 26
