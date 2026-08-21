@@ -64,6 +64,15 @@ jobs:
         }
         EOF
 
+        # Tạo tệp Info.plist (bắt buộc để Xcode xác nhận thư mục asset hợp lệ)
+        cat > $ICON_DEST/Info.plist << 'EOF'
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+        <plist version="1.0">
+        <dict/>
+        </plist>
+        EOF
+
     # Biên dịch Release Framework cho iPhone
     - name: Build Shared Framework
       run: ./gradlew :composeApp:linkReleaseFrameworkIosArm64 --no-daemon --stacktrace
