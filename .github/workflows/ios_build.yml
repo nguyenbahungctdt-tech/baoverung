@@ -26,7 +26,7 @@ jobs:
 
     # Biên dịch Framework Kotlin trước để Xcode không phải chạy Gradle bên trong
     - name: Build shared framework
-      run: ./gradlew :composeApp:assembleComposeAppReleaseFrameworkIosArm64
+      run: ./gradlew :composeApp:assembleComposeAppReleaseFrameworkIosArm64 --stacktrace --info
 
     - name: Build Xcode Project
       run: |
