@@ -21,7 +21,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Ứng dụng Bảo vệ rừng - Đại Thành"
+rootProject.name = "baoverung"
 
 include(":app")
 include(":composeApp")
