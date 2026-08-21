@@ -12,7 +12,7 @@ actual class DatabaseBuilder {
         val dbFilePath = NSHomeDirectory() + "/Documents/baoverung.db"
         return Room.databaseBuilder<AppDatabase>(
             name = dbFilePath,
-            factory = { AppDatabaseConstructor.initialize().create() }
+            factory = { AppDatabaseConstructor.initialize() }
         ).setDriver(BundledSQLiteDriver())
          .setQueryCoroutineContext(Dispatchers.IO)
     }
