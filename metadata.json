@@ -1,0 +1,6 @@
+{
+  "name": "Ứng dụng Bảo vệ rừng - Đại Thành",
+  "description": "Ứng dụng Bảo vệ rừng - Đại Thành: Khảo sát thực địa, Bản đồ GIS, GPS Tracklog GPX, Nhật ký tuần tra, Đo vẽ VN2000 & Hàng chờ Email.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Rules for Activation Keys: App needs to read, Web Admin needs full access
+    match /ActivationKeys/{keyId} {
+      allow read: if true;
+      allow write: if true; // In production, restrict this to admin auth
+    }
+
+    // Rules for Survey Data: App needs to write, Web Admin needs to read
+    match /Units/{unit}/Officers/{officer}/Surveys/{date}/{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

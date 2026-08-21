@@ -1,0 +1,3 @@
+C:/Users/PC/OneDrive/Desktop/bvr_android/app/.cxx/Debug/4z692j5b/arm64-v8a/CMakeFiles/gdal_reader.dir
+C:/Users/PC/OneDrive/Desktop/bvr_android/app/.cxx/Debug/4z692j5b/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/PC/OneDrive/Desktop/bvr_android/app/.cxx/Debug/4z692j5b/arm64-v8a/CMakeFiles/rebuild_cache.dir

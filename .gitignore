@@ -1,0 +1,17 @@
+.gradle
+/build
+.idea
+*.iml
+local.properties
+.DS_Store
+/app/build
+/composeApp/build
+/.artifacts
+.env
+
+# Nested projects with their own git
+/baoverung/
+/web-admin/
+/web-field-app/
+/SampleApp/
+/SampleApp.xcodeproj/

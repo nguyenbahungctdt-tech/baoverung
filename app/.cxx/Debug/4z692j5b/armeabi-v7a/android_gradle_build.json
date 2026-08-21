@@ -1,0 +1,40 @@
+{
+  "buildFiles": [
+    "C:\\Users\\PC\\OneDrive\\Desktop\\bvr_android\\app\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\PC\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\PC\\OneDrive\\Desktop\\bvr_android\\app\\.cxx\\Debug\\4z692j5b\\armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\PC\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\PC\\OneDrive\\Desktop\\bvr_android\\app\\.cxx\\Debug\\4z692j5b\\armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "gdal_reader::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "gdal_reader",
+      "output": "C:\\Users\\PC\\OneDrive\\Desktop\\bvr_android\\app\\build\\intermediates\\cxx\\Debug\\4z692j5b\\obj\\armeabi-v7a\\libgdal_reader.so",
+      "runtimeFiles": [
+        "C:\\Users\\PC\\OneDrive\\Desktop\\bvr_android\\app\\src\\main\\jniLibs\\armeabi-v7a\\libgdal.so"
+      ]
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "C:\\Users\\PC\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "C:\\Users\\PC\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

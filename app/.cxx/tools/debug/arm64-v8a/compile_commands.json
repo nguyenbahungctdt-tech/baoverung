@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Users/PC/OneDrive/Desktop/bvr_android/app/.cxx/Debug/4z692j5b/arm64-v8a",
+  "command": "C:\\Users\\PC\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android26 --sysroot=C:/Users/PC/AppData/Local/Android/Sdk/ndk/28.2.13676358/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dgdal_reader_EXPORTS -IC:/Users/PC/OneDrive/Desktop/bvr_android/app/src/main/cpp/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles\\gdal_reader.dir\\gdal_reader.cpp.o -c C:\\Users\\PC\\OneDrive\\Desktop\\bvr_android\\app\\src\\main\\cpp\\gdal_reader.cpp",
+  "file": "C:\\Users\\PC\\OneDrive\\Desktop\\bvr_android\\app\\src\\main\\cpp\\gdal_reader.cpp"
+}
+]

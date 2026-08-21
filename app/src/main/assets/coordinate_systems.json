@@ -1,0 +1,1129 @@
+[
+  {
+    "id": "WGS84_DMS",
+    "name": "WGS 84 (Độ Phút Giây)",
+    "projection": "WGS84",
+    "centralMeridian": 0.0,
+    "zoneDegrees": 0
+  },
+  {
+    "id": "EPSG:4326",
+    "name": "WGS 84 (Số thập phân)",
+    "projection": "WGS84",
+    "centralMeridian": 0.0,
+    "zoneDegrees": 0
+  },
+  {
+    "id": "EPSG:3857",
+    "name": "WGS 84 / Pseudo-Mercator",
+    "projection": "WGS84",
+    "centralMeridian": 0.0,
+    "zoneDegrees": 0
+  },
+  {
+    "id": "9001",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.0 + Hà Nội",
+    "projection": "VN2000",
+    "centralMeridian": 105.0,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9002",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.75 + TP. Hồ Chí Minh",
+    "projection": "VN2000",
+    "centralMeridian": 105.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9003",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.75 + Hải Phòng",
+    "projection": "VN2000",
+    "centralMeridian": 105.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9004",
+    "name": "VN2000 / TM-3 kinh tuyến trục 107.75 + Đà Nẵng",
+    "projection": "VN2000",
+    "centralMeridian": 107.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9005",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.0 + Cần Thơ",
+    "projection": "VN2000",
+    "centralMeridian": 105.0,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9006",
+    "name": "VN2000 / TM-3 kinh tuyến trục 107.0 + Huế",
+    "projection": "VN2000",
+    "centralMeridian": 107.0,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9007",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.75 + Cao Bằng",
+    "projection": "VN2000",
+    "centralMeridian": 105.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9008",
+    "name": "VN2000 / TM-3 kinh tuyến trục 107.25 + Lạng Sơn",
+    "projection": "VN2000",
+    "centralMeridian": 107.25,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9009",
+    "name": "VN2000 / TM-3 kinh tuyến trục 103.0 + Lai Châu",
+    "projection": "VN2000",
+    "centralMeridian": 103.0,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9010",
+    "name": "VN2000 / TM-3 kinh tuyến trục 103.0 + Điện Biên",
+    "projection": "VN2000",
+    "centralMeridian": 103.0,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9011",
+    "name": "VN2000 / TM-3 kinh tuyến trục 104.0 + Sơn La",
+    "projection": "VN2000",
+    "centralMeridian": 104.0,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9012",
+    "name": "VN2000 / TM-3 kinh tuyến trục 107.75 + Quảng Ninh",
+    "projection": "VN2000",
+    "centralMeridian": 107.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9013",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.0 + Thanh Hóa",
+    "projection": "VN2000",
+    "centralMeridian": 105.0,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9014",
+    "name": "VN2000 / TM-3 kinh tuyến trục 104.75 + Nghệ An",
+    "projection": "VN2000",
+    "centralMeridian": 104.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9015",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.5 + Hà Tĩnh",
+    "projection": "VN2000",
+    "centralMeridian": 105.5,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9016",
+    "name": "VN2000 / TM-3 kinh tuyến trục 104.75 + Lào Cai",
+    "projection": "VN2000",
+    "centralMeridian": 104.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9017",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.75 + Tuyên Quang",
+    "projection": "VN2000",
+    "centralMeridian": 105.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9018",
+    "name": "VN2000 / TM-3 kinh tuyến trục 106.5 + Thái Nguyên",
+    "projection": "VN2000",
+    "centralMeridian": 106.5,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9019",
+    "name": "VN2000 / TM-3 kinh tuyến trục 104.75 + Phú Thọ",
+    "projection": "VN2000",
+    "centralMeridian": 104.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9020",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.5 + Bắc Ninh",
+    "projection": "VN2000",
+    "centralMeridian": 105.5,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9021",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.5 + Hưng Yên",
+    "projection": "VN2000",
+    "centralMeridian": 105.5,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9022",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.0 + Ninh Bình",
+    "projection": "VN2000",
+    "centralMeridian": 105.0,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9023",
+    "name": "VN2000 / TM-3 kinh tuyến trục 106.25 + Quảng Trị",
+    "projection": "VN2000",
+    "centralMeridian": 106.25,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9024",
+    "name": "VN2000 / TM-3 kinh tuyến trục 108.0 + Quảng Ngãi",
+    "projection": "VN2000",
+    "centralMeridian": 108.0,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9025",
+    "name": "VN2000 / TM-3 kinh tuyến trục 108.5 + Gia Lai",
+    "projection": "VN2000",
+    "centralMeridian": 108.5,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9026",
+    "name": "VN2000 / TM-3 kinh tuyến trục 108.25 + Khánh Hòa",
+    "projection": "VN2000",
+    "centralMeridian": 108.25,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9027",
+    "name": "VN2000 / TM-3 kinh tuyến trục 107.75 + Lâm Đồng",
+    "projection": "VN2000",
+    "centralMeridian": 107.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9028",
+    "name": "VN2000 / TM-3 kinh tuyến trục 108.5 + Đắk Lắk",
+    "projection": "VN2000",
+    "centralMeridian": 108.5,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9029",
+    "name": "VN2000 / TM-3 kinh tuyến trục 107.75 + Đồng Nai",
+    "projection": "VN2000",
+    "centralMeridian": 107.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9030",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.5 + Tây Ninh",
+    "projection": "VN2000",
+    "centralMeridian": 105.5,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9031",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.5 + Vĩnh Long",
+    "projection": "VN2000",
+    "centralMeridian": 105.5,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9032",
+    "name": "VN2000 / TM-3 kinh tuyến trục 105.0 + Đồng Tháp",
+    "projection": "VN2000",
+    "centralMeridian": 105.0,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9033",
+    "name": "VN2000 / TM-3 kinh tuyến trục 104.75 + An Giang",
+    "projection": "VN2000",
+    "centralMeridian": 104.75,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "9034",
+    "name": "VN2000 / TM-3 kinh tuyến trục 104.5 + Cà Mau",
+    "projection": "VN2000",
+    "centralMeridian": 104.5,
+    "zoneDegrees": 3
+  },
+  {
+    "id": "EPSG:32601",
+    "name": "WGS 84 / UTM zone 1N",
+    "projection": "UTM",
+    "centralMeridian": -177.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32602",
+    "name": "WGS 84 / UTM zone 2N",
+    "projection": "UTM",
+    "centralMeridian": -171.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32603",
+    "name": "WGS 84 / UTM zone 3N",
+    "projection": "UTM",
+    "centralMeridian": -165.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32604",
+    "name": "WGS 84 / UTM zone 4N",
+    "projection": "UTM",
+    "centralMeridian": -159.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32605",
+    "name": "WGS 84 / UTM zone 5N",
+    "projection": "UTM",
+    "centralMeridian": -153.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32606",
+    "name": "WGS 84 / UTM zone 6N",
+    "projection": "UTM",
+    "centralMeridian": -147.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32607",
+    "name": "WGS 84 / UTM zone 7N",
+    "projection": "UTM",
+    "centralMeridian": -141.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32608",
+    "name": "WGS 84 / UTM zone 8N",
+    "projection": "UTM",
+    "centralMeridian": -135.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32609",
+    "name": "WGS 84 / UTM zone 9N",
+    "projection": "UTM",
+    "centralMeridian": -129.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32610",
+    "name": "WGS 84 / UTM zone 10N",
+    "projection": "UTM",
+    "centralMeridian": -123.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32611",
+    "name": "WGS 84 / UTM zone 11N",
+    "projection": "UTM",
+    "centralMeridian": -117.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32612",
+    "name": "WGS 84 / UTM zone 12N",
+    "projection": "UTM",
+    "centralMeridian": -111.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32613",
+    "name": "WGS 84 / UTM zone 13N",
+    "projection": "UTM",
+    "centralMeridian": -105.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32614",
+    "name": "WGS 84 / UTM zone 14N",
+    "projection": "UTM",
+    "centralMeridian": -99.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32615",
+    "name": "WGS 84 / UTM zone 15N",
+    "projection": "UTM",
+    "centralMeridian": -93.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32616",
+    "name": "WGS 84 / UTM zone 16N",
+    "projection": "UTM",
+    "centralMeridian": -87.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32617",
+    "name": "WGS 84 / UTM zone 17N",
+    "projection": "UTM",
+    "centralMeridian": -81.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32618",
+    "name": "WGS 84 / UTM zone 18N",
+    "projection": "UTM",
+    "centralMeridian": -75.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32619",
+    "name": "WGS 84 / UTM zone 19N",
+    "projection": "UTM",
+    "centralMeridian": -69.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32620",
+    "name": "WGS 84 / UTM zone 20N",
+    "projection": "UTM",
+    "centralMeridian": -63.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32621",
+    "name": "WGS 84 / UTM zone 21N",
+    "projection": "UTM",
+    "centralMeridian": -57.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32622",
+    "name": "WGS 84 / UTM zone 22N",
+    "projection": "UTM",
+    "centralMeridian": -51.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32623",
+    "name": "WGS 84 / UTM zone 23N",
+    "projection": "UTM",
+    "centralMeridian": -45.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32624",
+    "name": "WGS 84 / UTM zone 24N",
+    "projection": "UTM",
+    "centralMeridian": -39.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32625",
+    "name": "WGS 84 / UTM zone 25N",
+    "projection": "UTM",
+    "centralMeridian": -33.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32626",
+    "name": "WGS 84 / UTM zone 26N",
+    "projection": "UTM",
+    "centralMeridian": -27.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32627",
+    "name": "WGS 84 / UTM zone 27N",
+    "projection": "UTM",
+    "centralMeridian": -21.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32628",
+    "name": "WGS 84 / UTM zone 28N",
+    "projection": "UTM",
+    "centralMeridian": -15.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32629",
+    "name": "WGS 84 / UTM zone 29N",
+    "projection": "UTM",
+    "centralMeridian": -9.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32630",
+    "name": "WGS 84 / UTM zone 30N",
+    "projection": "UTM",
+    "centralMeridian": -3.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32631",
+    "name": "WGS 84 / UTM zone 31N",
+    "projection": "UTM",
+    "centralMeridian": 3.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32632",
+    "name": "WGS 84 / UTM zone 32N",
+    "projection": "UTM",
+    "centralMeridian": 9.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32633",
+    "name": "WGS 84 / UTM zone 33N",
+    "projection": "UTM",
+    "centralMeridian": 15.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32634",
+    "name": "WGS 84 / UTM zone 34N",
+    "projection": "UTM",
+    "centralMeridian": 21.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32635",
+    "name": "WGS 84 / UTM zone 35N",
+    "projection": "UTM",
+    "centralMeridian": 27.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32636",
+    "name": "WGS 84 / UTM zone 36N",
+    "projection": "UTM",
+    "centralMeridian": 33.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32637",
+    "name": "WGS 84 / UTM zone 37N",
+    "projection": "UTM",
+    "centralMeridian": 39.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32638",
+    "name": "WGS 84 / UTM zone 38N",
+    "projection": "UTM",
+    "centralMeridian": 45.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32639",
+    "name": "WGS 84 / UTM zone 39N",
+    "projection": "UTM",
+    "centralMeridian": 51.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32640",
+    "name": "WGS 84 / UTM zone 40N",
+    "projection": "UTM",
+    "centralMeridian": 57.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32641",
+    "name": "WGS 84 / UTM zone 41N",
+    "projection": "UTM",
+    "centralMeridian": 63.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32642",
+    "name": "WGS 84 / UTM zone 42N",
+    "projection": "UTM",
+    "centralMeridian": 69.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32643",
+    "name": "WGS 84 / UTM zone 43N",
+    "projection": "UTM",
+    "centralMeridian": 75.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32644",
+    "name": "WGS 84 / UTM zone 44N",
+    "projection": "UTM",
+    "centralMeridian": 81.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32645",
+    "name": "WGS 84 / UTM zone 45N",
+    "projection": "UTM",
+    "centralMeridian": 87.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32646",
+    "name": "WGS 84 / UTM zone 46N",
+    "projection": "UTM",
+    "centralMeridian": 93.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32647",
+    "name": "WGS 84 / UTM zone 47N",
+    "projection": "UTM",
+    "centralMeridian": 99.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32648",
+    "name": "WGS 84 / UTM zone 48N",
+    "projection": "UTM",
+    "centralMeridian": 105.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32649",
+    "name": "WGS 84 / UTM zone 49N",
+    "projection": "UTM",
+    "centralMeridian": 111.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32650",
+    "name": "WGS 84 / UTM zone 50N",
+    "projection": "UTM",
+    "centralMeridian": 117.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32651",
+    "name": "WGS 84 / UTM zone 51N",
+    "projection": "UTM",
+    "centralMeridian": 123.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32652",
+    "name": "WGS 84 / UTM zone 52N",
+    "projection": "UTM",
+    "centralMeridian": 129.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32653",
+    "name": "WGS 84 / UTM zone 53N",
+    "projection": "UTM",
+    "centralMeridian": 135.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32654",
+    "name": "WGS 84 / UTM zone 54N",
+    "projection": "UTM",
+    "centralMeridian": 141.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32655",
+    "name": "WGS 84 / UTM zone 55N",
+    "projection": "UTM",
+    "centralMeridian": 147.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32656",
+    "name": "WGS 84 / UTM zone 56N",
+    "projection": "UTM",
+    "centralMeridian": 153.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32657",
+    "name": "WGS 84 / UTM zone 57N",
+    "projection": "UTM",
+    "centralMeridian": 159.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32658",
+    "name": "WGS 84 / UTM zone 58N",
+    "projection": "UTM",
+    "centralMeridian": 165.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32659",
+    "name": "WGS 84 / UTM zone 59N",
+    "projection": "UTM",
+    "centralMeridian": 171.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32660",
+    "name": "WGS 84 / UTM zone 60N",
+    "projection": "UTM",
+    "centralMeridian": 177.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32701",
+    "name": "WGS 84 / UTM zone 1S",
+    "projection": "UTM",
+    "centralMeridian": -177.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32702",
+    "name": "WGS 84 / UTM zone 2S",
+    "projection": "UTM",
+    "centralMeridian": -171.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32703",
+    "name": "WGS 84 / UTM zone 3S",
+    "projection": "UTM",
+    "centralMeridian": -165.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32704",
+    "name": "WGS 84 / UTM zone 4S",
+    "projection": "UTM",
+    "centralMeridian": -159.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32705",
+    "name": "WGS 84 / UTM zone 5S",
+    "projection": "UTM",
+    "centralMeridian": -153.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32706",
+    "name": "WGS 84 / UTM zone 6S",
+    "projection": "UTM",
+    "centralMeridian": -147.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32707",
+    "name": "WGS 84 / UTM zone 7S",
+    "projection": "UTM",
+    "centralMeridian": -141.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32708",
+    "name": "WGS 84 / UTM zone 8S",
+    "projection": "UTM",
+    "centralMeridian": -135.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32709",
+    "name": "WGS 84 / UTM zone 9S",
+    "projection": "UTM",
+    "centralMeridian": -129.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32710",
+    "name": "WGS 84 / UTM zone 10S",
+    "projection": "UTM",
+    "centralMeridian": -123.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32711",
+    "name": "WGS 84 / UTM zone 11S",
+    "projection": "UTM",
+    "centralMeridian": -117.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32712",
+    "name": "WGS 84 / UTM zone 12S",
+    "projection": "UTM",
+    "centralMeridian": -111.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32713",
+    "name": "WGS 84 / UTM zone 13S",
+    "projection": "UTM",
+    "centralMeridian": -105.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32714",
+    "name": "WGS 84 / UTM zone 14S",
+    "projection": "UTM",
+    "centralMeridian": -99.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32715",
+    "name": "WGS 84 / UTM zone 15S",
+    "projection": "UTM",
+    "centralMeridian": -93.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32716",
+    "name": "WGS 84 / UTM zone 16S",
+    "projection": "UTM",
+    "centralMeridian": -87.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32717",
+    "name": "WGS 84 / UTM zone 17S",
+    "projection": "UTM",
+    "centralMeridian": -81.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32718",
+    "name": "WGS 84 / UTM zone 18S",
+    "projection": "UTM",
+    "centralMeridian": -75.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32719",
+    "name": "WGS 84 / UTM zone 19S",
+    "projection": "UTM",
+    "centralMeridian": -69.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32720",
+    "name": "WGS 84 / UTM zone 20S",
+    "projection": "UTM",
+    "centralMeridian": -63.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32721",
+    "name": "WGS 84 / UTM zone 21S",
+    "projection": "UTM",
+    "centralMeridian": -57.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32722",
+    "name": "WGS 84 / UTM zone 22S",
+    "projection": "UTM",
+    "centralMeridian": -51.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32723",
+    "name": "WGS 84 / UTM zone 23S",
+    "projection": "UTM",
+    "centralMeridian": -45.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32724",
+    "name": "WGS 84 / UTM zone 24S",
+    "projection": "UTM",
+    "centralMeridian": -39.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32725",
+    "name": "WGS 84 / UTM zone 25S",
+    "projection": "UTM",
+    "centralMeridian": -33.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32726",
+    "name": "WGS 84 / UTM zone 26S",
+    "projection": "UTM",
+    "centralMeridian": -27.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32727",
+    "name": "WGS 84 / UTM zone 27S",
+    "projection": "UTM",
+    "centralMeridian": -21.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32728",
+    "name": "WGS 84 / UTM zone 28S",
+    "projection": "UTM",
+    "centralMeridian": -15.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32729",
+    "name": "WGS 84 / UTM zone 29S",
+    "projection": "UTM",
+    "centralMeridian": -9.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32730",
+    "name": "WGS 84 / UTM zone 30S",
+    "projection": "UTM",
+    "centralMeridian": -3.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32731",
+    "name": "WGS 84 / UTM zone 31S",
+    "projection": "UTM",
+    "centralMeridian": 3.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32732",
+    "name": "WGS 84 / UTM zone 32S",
+    "projection": "UTM",
+    "centralMeridian": 9.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32733",
+    "name": "WGS 84 / UTM zone 33S",
+    "projection": "UTM",
+    "centralMeridian": 15.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32734",
+    "name": "WGS 84 / UTM zone 34S",
+    "projection": "UTM",
+    "centralMeridian": 21.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32735",
+    "name": "WGS 84 / UTM zone 35S",
+    "projection": "UTM",
+    "centralMeridian": 27.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32736",
+    "name": "WGS 84 / UTM zone 36S",
+    "projection": "UTM",
+    "centralMeridian": 33.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32737",
+    "name": "WGS 84 / UTM zone 37S",
+    "projection": "UTM",
+    "centralMeridian": 39.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32738",
+    "name": "WGS 84 / UTM zone 38S",
+    "projection": "UTM",
+    "centralMeridian": 45.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32739",
+    "name": "WGS 84 / UTM zone 39S",
+    "projection": "UTM",
+    "centralMeridian": 51.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32740",
+    "name": "WGS 84 / UTM zone 40S",
+    "projection": "UTM",
+    "centralMeridian": 57.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32741",
+    "name": "WGS 84 / UTM zone 41S",
+    "projection": "UTM",
+    "centralMeridian": 63.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32742",
+    "name": "WGS 84 / UTM zone 42S",
+    "projection": "UTM",
+    "centralMeridian": 69.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32743",
+    "name": "WGS 84 / UTM zone 43S",
+    "projection": "UTM",
+    "centralMeridian": 75.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32744",
+    "name": "WGS 84 / UTM zone 44S",
+    "projection": "UTM",
+    "centralMeridian": 81.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32745",
+    "name": "WGS 84 / UTM zone 45S",
+    "projection": "UTM",
+    "centralMeridian": 87.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32746",
+    "name": "WGS 84 / UTM zone 46S",
+    "projection": "UTM",
+    "centralMeridian": 93.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32747",
+    "name": "WGS 84 / UTM zone 47S",
+    "projection": "UTM",
+    "centralMeridian": 99.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32748",
+    "name": "WGS 84 / UTM zone 48S",
+    "projection": "UTM",
+    "centralMeridian": 105.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32749",
+    "name": "WGS 84 / UTM zone 49S",
+    "projection": "UTM",
+    "centralMeridian": 111.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32750",
+    "name": "WGS 84 / UTM zone 50S",
+    "projection": "UTM",
+    "centralMeridian": 117.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32751",
+    "name": "WGS 84 / UTM zone 51S",
+    "projection": "UTM",
+    "centralMeridian": 123.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32752",
+    "name": "WGS 84 / UTM zone 52S",
+    "projection": "UTM",
+    "centralMeridian": 129.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32753",
+    "name": "WGS 84 / UTM zone 53S",
+    "projection": "UTM",
+    "centralMeridian": 135.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32754",
+    "name": "WGS 84 / UTM zone 54S",
+    "projection": "UTM",
+    "centralMeridian": 141.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32755",
+    "name": "WGS 84 / UTM zone 55S",
+    "projection": "UTM",
+    "centralMeridian": 147.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32756",
+    "name": "WGS 84 / UTM zone 56S",
+    "projection": "UTM",
+    "centralMeridian": 153.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32757",
+    "name": "WGS 84 / UTM zone 57S",
+    "projection": "UTM",
+    "centralMeridian": 159.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32758",
+    "name": "WGS 84 / UTM zone 58S",
+    "projection": "UTM",
+    "centralMeridian": 165.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32759",
+    "name": "WGS 84 / UTM zone 59S",
+    "projection": "UTM",
+    "centralMeridian": 171.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "EPSG:32760",
+    "name": "WGS 84 / UTM zone 60S",
+    "projection": "UTM",
+    "centralMeridian": 177.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "VN2000:6",
+    "name": "VN-2000 / UTM zone 48N",
+    "projection": "VN2000",
+    "centralMeridian": 105.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "VN2000:7",
+    "name": "VN-2000 / UTM zone 49N",
+    "projection": "VN2000",
+    "centralMeridian": 111.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "HN72:1",
+    "name": "HN-72 / GK zone 18",
+    "projection": "HN72",
+    "centralMeridian": 105.0,
+    "zoneDegrees": 6
+  },
+  {
+    "id": "HN72:2",
+    "name": "HN-72 / GK zone 19",
+    "projection": "HN72",
+    "centralMeridian": 111.0,
+    "zoneDegrees": 6
+  }
+]
