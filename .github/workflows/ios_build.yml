@@ -34,6 +34,12 @@ jobs:
       run: |
         ICON_SRC="app/src/main/res/drawable/app_icon_forestry.jpg"
         ICON_DEST="iosApp/iosApp/Assets.xcassets/AppIcon.appiconset"
+        
+        if [ ! -f "$ICON_SRC" ]; then
+          echo "ERROR: Source icon not found at $ICON_SRC"
+          exit 1
+        fi
+        
         mkdir -p $ICON_DEST
         
         # Create PNG images from source
@@ -65,8 +71,10 @@ jobs:
         EOF
         
         # Verify all icon files were created
-        if [ $(ls -1 $ICON_DEST/*.png 2>/dev/null | wc -l) -eq 0 ]; then
-          echo "ERROR: No PNG files generated!"
+        if [ $(ls -1 $ICON_DEST/*.png 2>/dev/null | wc -l) -ne 8 ]; then
+          echo "ERROR: Expected 8 PNG files, but found $(ls -1 $ICON_DEST/*.png 2>/dev/null | wc -l)"
+          # Note: The provided solution said 9, but let's count: 40,60,58,87,80,120,180,1024 -> 8 files.
+          # Wait, icon-120 is used twice in the JSON. So 8 files are correct.
           exit 1
         fi
 

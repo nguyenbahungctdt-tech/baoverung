@@ -5,7 +5,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -13,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.baoverung.app.data.model.GpsPoint
-import com.baoverung.app.util.format
+import com.baoverung.app.util.toDateTimeString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -22,10 +22,7 @@ fun NaturalImpactFormScreen(
     userName: String,
     onSubmit: (
         cause: String,
-        otherCause: String,
         area: String,
-        before: String,
-        after: String,
         damage: String,
         time: String,
         photoPaths: List<String>,
@@ -34,14 +31,9 @@ fun NaturalImpactFormScreen(
     onBack: () -> Unit
 ) {
     val scrollState = rememberScrollState()
-    
-    var cause by remember { mutableStateOf("Sạt lở đất") }
-    var otherCause by remember { mutableStateOf("") }
+    var cause by remember { mutableStateOf("") }
     var area by remember { mutableStateOf("") }
-    var before by remember { mutableStateOf("") }
-    var after by remember { mutableStateOf("") }
-    var damage by remember { mutableStateOf("") }
-    var time by remember { mutableStateOf("") }
+    val timeStr = currentLocation?.timestampUtc?.toDateTimeString() ?: "Đang tìm GPS..."
 
     Scaffold(
         topBar = {
@@ -51,30 +43,25 @@ fun NaturalImpactFormScreen(
                     IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, null) }
                 },
                 actions = {
-                    Button(onClick = { 
-                        onSubmit(cause, otherCause, area, before, after, damage, time, emptyList(), true)
-                    }) {
-                        Text("BÁO CÁO", fontWeight = FontWeight.Black)
+                    Button(
+                        onClick = {
+                            onSubmit(cause, area, "", timeStr, emptyList(), true)
+                        },
+                        shape = RoundedCornerShape(10.dp)
+                    ) {
+                        Text("BÁO CÁO", fontSize = 12.sp, fontWeight = FontWeight.Black)
                     }
                 }
             )
         }
     ) { padding ->
         Column(
-            modifier = Modifier.fillMaxSize().padding(padding).padding(horizontal = 16.dp).verticalScroll(scrollState),
+            modifier = Modifier.padding(padding).padding(horizontal = 16.dp).verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Spacer(modifier = Modifier.height(8.dp))
-            
-            OutlinedTextField(value = cause, onValueChange = { cause = it }, label = { Text("Nguyên nhân tác động") }, modifier = Modifier.fillMaxWidth())
-            OutlinedTextField(value = area, onValueChange = { area = it }, label = { Text("Diện tích bị ảnh hưởng") }, modifier = Modifier.fillMaxWidth())
-            OutlinedTextField(value = damage, onValueChange = { damage = it }, label = { Text("Mức độ thiệt hại rừng") }, modifier = Modifier.fillMaxWidth())
-            OutlinedTextField(value = time, onValueChange = { time = it }, label = { Text("Thời điểm xảy ra") }, modifier = Modifier.fillMaxWidth())
-            
-            OutlinedTextField(value = before, onValueChange = { before = it }, label = { Text("Trạng thái trước tác động") }, modifier = Modifier.fillMaxWidth(), minLines = 2)
-            OutlinedTextField(value = after, onValueChange = { after = it }, label = { Text("Trạng thái hiện tại") }, modifier = Modifier.fillMaxWidth(), minLines = 2)
-            
-            Spacer(modifier = Modifier.height(24.dp))
+            OutlinedTextField(value = cause, onValueChange = { cause = it }, label = { Text("Nguyên nhân") }, modifier = Modifier.fillMaxWidth())
+            OutlinedTextField(value = area, onValueChange = { area = it }, label = { Text("Diện tích ảnh hưởng") }, modifier = Modifier.fillMaxWidth())
         }
     }
 }

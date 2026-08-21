@@ -1,11 +1,6 @@
 package com.baoverung.app
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -14,7 +9,7 @@ import com.baoverung.app.ui.auth.LoginScreen
 import com.baoverung.app.ui.map.MapScreen
 import com.baoverung.app.ui.map.MeasurementMode
 import com.baoverung.app.ui.navigation.Screen
-import com.baoverung.app.ui.patrol.PatrolLogFormScreen
+import com.baoverung.app.ui.patrol.*
 import com.baoverung.app.ui.gis_layers.GisLayersScreen
 import com.baoverung.app.ui.theme.MyApplicationTheme
 import com.baoverung.app.platform.PlatformSettings
@@ -54,17 +49,20 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
             }
 
             composable(Screen.Map.route) {
+                val loc by viewModel.currentLocation.collectAsState()
+                val isTracking by viewModel.isTrackingGpx.collectAsState()
+                
                 MapScreen(
                     centerLat = 11.9404,
                     centerLon = 108.4378,
                     zoomLevel = 15f,
                     onMapChange = { _, _, _ -> },
-                    currentLocation = viewModel.currentLocation.collectAsState().value,
+                    currentLocation = loc,
                     compassAzimuth = 0f,
                     measurementMode = MeasurementMode.NONE,
                     measurementPoints = emptyList(),
                     targetNavPoint = null,
-                    isTrackingGpx = viewModel.isTrackingGpx.collectAsState().value,
+                    isTrackingGpx = isTracking,
                     trackedPoints = emptyList(),
                     selectedMapSource = "Google Satellite",
                     onSelectMapSource = {},
@@ -79,13 +77,48 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
             }
 
             composable(Screen.PatrolForm.route) {
+                val loc by viewModel.currentLocation.collectAsState()
                 PatrolLogFormScreen(
-                    currentLocation = null,
+                    currentLocation = loc,
                     userEmail = userSession.email,
                     userName = userSession.displayName,
                     centralMeridian = 107.75,
                     zoneDegrees = 3,
-                    onSubmitPatrolLog = { _, _, _, _, _, _, _, _, _ -> 
+                    onSubmitPatrolLog = { _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ -> 
+                        navController.popBackStack()
+                    },
+                    onBack = { navController.popBackStack() }
+                )
+            }
+
+            composable(Screen.FloraFaunaForm.route) {
+                val loc by viewModel.currentLocation.collectAsState()
+                FloraFaunaFormScreen(
+                    currentLocation = loc,
+                    userName = userSession.displayName,
+                    onSubmit = { _, _, _, _, _, _, _, _, _, _, _ -> 
+                        navController.popBackStack()
+                    },
+                    onBack = { navController.popBackStack() }
+                )
+            }
+
+            composable(Screen.NaturalImpactForm.route) {
+                val loc by viewModel.currentLocation.collectAsState()
+                NaturalImpactFormScreen(
+                    currentLocation = loc,
+                    userName = userSession.displayName,
+                    onSubmit = { _, _, _, _, _, _ -> 
+                        navController.popBackStack()
+                    },
+                    onBack = { navController.popBackStack() }
+                )
+            }
+
+            composable(Screen.DailyJournal.route) {
+                DailyJournalFormScreen(
+                    userName = userSession.displayName,
+                    onSave = { _, _, _ -> 
                         navController.popBackStack()
                     },
                     onBack = { navController.popBackStack() }
@@ -99,7 +132,7 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                     onToggleVisibility = { /* TODO */ },
                     onDeleteLayer = { /* TODO */ },
                     onImportFile = { path ->
-                        // Logic nhập file sẽ được triển khai trong repository
+                        // Logic nhập file
                     },
                     onBack = { navController.popBackStack() }
                 )
