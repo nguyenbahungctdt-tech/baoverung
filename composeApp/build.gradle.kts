@@ -37,6 +37,7 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.coil.compose)
+            implementation(libs.androidx.navigation.compose)
         }
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)

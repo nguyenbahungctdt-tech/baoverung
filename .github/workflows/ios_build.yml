@@ -24,11 +24,13 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x gradlew
 
+    # Biên dịch Release Framework cho iPhone (Tắt daemon để tránh treo máy)
     - name: Build Framework
-      run: ./gradlew :composeApp:assembleComposeAppReleaseFrameworkIosArm64 --stacktrace
+      run: ./gradlew :composeApp:assembleComposeAppReleaseFrameworkIosArm64 --no-daemon --stacktrace --info
 
     - name: Build Xcode Project
       run: |
+        export JAVA_HOME=$JAVA_HOME_17_arm64
         xcodebuild -project iosApp/iosApp.xcodeproj \
                    -scheme iosApp \
                    -configuration Release \
@@ -36,7 +38,9 @@ jobs:
                    -derivedDataPath build/ios \
                    CODE_SIGN_IDENTITY="" \
                    CODE_SIGNING_REQUIRED=NO \
-                   CODE_SIGNING_ALLOWED=NO
+                   CODE_SIGNING_ALLOWED=NO \
+                   COMPILER_INDEX_STORE_ENABLE=NO \
+                   ACTION=build
 
     - name: Zip .app to .ipa (Unsigned)
       run: |

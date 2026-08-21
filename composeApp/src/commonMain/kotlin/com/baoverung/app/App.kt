@@ -13,7 +13,6 @@ import com.baoverung.app.ui.auth.LoginScreen
 import com.baoverung.app.ui.map.MapScreen
 import com.baoverung.app.ui.map.MeasurementMode
 import com.baoverung.app.ui.navigation.Screen
-import com.baoverung.app.ui.patrol.PatrolLogFormScreen
 import com.baoverung.app.ui.theme.MyApplicationTheme
 import com.baoverung.app.platform.PlatformSettings
 

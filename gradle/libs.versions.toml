@@ -14,20 +14,20 @@ activityCompose = "1.9.1"
 composeBom = "2024.08.00"
 googleDevtoolsKsp = "2.0.21-1.0.25"
 navigationCompose = "2.8.0-alpha10"
-roomRuntime = "2.7.0-alpha07"
-roomKtx = "2.7.0-alpha07"
-roomCompiler = "2.7.0-alpha07"
-sqlite = "2.5.0-alpha07"
-kotlinxCoroutinesTest = "1.8.1"
-kotlinxDatetime = "0.6.0"
+roomRuntime = "2.7.0-alpha10"
+roomKtx = "2.7.0-alpha10"
+roomCompiler = "2.7.0-alpha10"
+sqlite = "2.5.0-alpha10"
+kotlinxCoroutinesTest = "1.9.0"
+kotlinxDatetime = "0.6.1"
 core = "1.6.1"
 runner = "1.6.1"
 coilCompose = "3.0.0-rc01"
 retrofit = "2.11.0"
 converterMoshi = "2.11.0"
-kotlinxCoroutinesAndroid = "1.8.1"
-kotlinxCoroutinesCore = "1.8.1"
-kotlinxCoroutinesPlayServices = "1.8.1"
+kotlinxCoroutinesAndroid = "1.9.0"
+kotlinxCoroutinesCore = "1.9.0"
+kotlinxCoroutinesPlayServices = "1.9.0"
 accompanistPermissions = "0.36.0"
 playServicesLocation = "21.3.0"
 cameraCamera2 = "1.4.0-rc01"
@@ -96,7 +96,7 @@ moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.re
 moshi-kotlin-codegen = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "moshiKotlinCodegen" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastorePreferences" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
-roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
+roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
 roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazzi" }
 roborazzi-junit-rule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazzi" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
