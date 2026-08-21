@@ -30,11 +30,13 @@ jobs:
     - name: Install ImageMagick
       run: brew install imagemagick
 
-    - name: Generate App Icons
+    - name: Generate App Icons and Contents.json
       run: |
         ICON_SRC="app/src/main/res/drawable/app_icon_forestry.jpg"
         ICON_DEST="iosApp/iosApp/Assets.xcassets/AppIcon.appiconset"
         mkdir -p $ICON_DEST
+        
+        # Tạo các file ảnh PNG từ ảnh gốc
         magick convert $ICON_SRC -resize 40x40 $ICON_DEST/icon-40.png
         magick convert $ICON_SRC -resize 60x60 $ICON_DEST/icon-60.png
         magick convert $ICON_SRC -resize 58x58 $ICON_DEST/icon-58.png
@@ -43,10 +45,28 @@ jobs:
         magick convert $ICON_SRC -resize 120x120 $ICON_DEST/icon-120.png
         magick convert $ICON_SRC -resize 180x180 $ICON_DEST/icon-180.png
         magick convert $ICON_SRC -resize 1024x1024 $ICON_DEST/icon-1024.png
+        
+        # Tạo tệp Contents.json để Xcode nhận diện ảnh
+        cat > $ICON_DEST/Contents.json << 'EOF'
+        {
+          "images" : [
+            { "idiom" : "iphone", "size" : "20x20", "scale" : "2x", "filename" : "icon-40.png" },
+            { "idiom" : "iphone", "size" : "20x20", "scale" : "3x", "filename" : "icon-60.png" },
+            { "idiom" : "iphone", "size" : "29x29", "scale" : "2x", "filename" : "icon-58.png" },
+            { "idiom" : "iphone", "size" : "29x29", "scale" : "3x", "filename" : "icon-87.png" },
+            { "idiom" : "iphone", "size" : "40x40", "scale" : "2x", "filename" : "icon-80.png" },
+            { "idiom" : "iphone", "size" : "40x40", "scale" : "3x", "filename" : "icon-120.png" },
+            { "idiom" : "iphone", "size" : "60x60", "scale" : "2x", "filename" : "icon-120.png" },
+            { "idiom" : "iphone", "size" : "60x60", "scale" : "3x", "filename" : "icon-180.png" },
+            { "idiom" : "ios-marketing", "size" : "1024x1024", "scale" : "1x", "filename" : "icon-1024.png" }
+          ],
+          "info" : { "version" : 1, "author" : "xcode" }
+        }
+        EOF
 
-    # Biên dịch Release Framework cho iPhone (Tắt daemon để tránh treo máy)
+    # Biên dịch Release Framework cho iPhone
     - name: Build Shared Framework
-      run: ./gradlew :composeApp:linkReleaseFrameworkIosArm64 --no-daemon --stacktrace --info
+      run: ./gradlew :composeApp:linkReleaseFrameworkIosArm64 --no-daemon --stacktrace
 
     - name: Build Xcode Project
       run: |
