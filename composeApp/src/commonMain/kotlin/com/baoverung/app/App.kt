@@ -11,6 +11,7 @@ import com.baoverung.app.ui.map.MeasurementMode
 import com.baoverung.app.ui.navigation.Screen
 import com.baoverung.app.ui.patrol.*
 import com.baoverung.app.ui.gis_layers.GisLayersScreen
+import com.baoverung.app.ui.converter.CoordinateConverterScreen
 import com.baoverung.app.ui.theme.MyApplicationTheme
 import com.baoverung.app.platform.PlatformSettings
 import com.baoverung.app.ui.MainViewModel
@@ -134,6 +135,12 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                     onImportFile = { path ->
                         // Logic nhập file
                     },
+                    onBack = { navController.popBackStack() }
+                )
+            }
+            
+            composable(Screen.CoordinateConverter.route) {
+                CoordinateConverterScreen(
                     onBack = { navController.popBackStack() }
                 )
             }

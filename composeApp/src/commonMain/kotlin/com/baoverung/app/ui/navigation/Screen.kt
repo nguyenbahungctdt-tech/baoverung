@@ -11,4 +11,5 @@ sealed class Screen(val route: String) {
     object WaypointsData : Screen("waypoints_data")
     object Settings : Screen("settings")
     object CameraCapture : Screen("camera_capture")
+    object CoordinateConverter : Screen("coordinate_converter")
 }
