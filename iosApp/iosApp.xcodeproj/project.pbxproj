@@ -233,6 +233,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bảo vệ rừng";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ứng dụng cần dùng camera để chụp ảnh hiện trường có đóng dấu tọa độ.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ứng dụng cần truy cập vị trí để xác định tọa độ tuần tra rừng.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -260,6 +263,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bảo vệ rừng";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ứng dụng cần dùng camera để chụp ảnh hiện trường có đóng dấu tọa độ.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ứng dụng cần truy cập vị trí để xác định tọa độ tuần tra rừng.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -21,14 +21,30 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
 
-    # Thiết lập môi trường Android SDK tối giản để tránh lỗi Service trên MacOS
     - name: Set up Android SDK
       uses: android-actions/setup-android@v3
 
     - name: Make gradlew executable
       run: chmod +x gradlew
 
-    # Sử dụng task chuẩn của Compose Multiplatform: linkReleaseFrameworkIosArm64
+    - name: Install ImageMagick
+      run: brew install imagemagick
+
+    - name: Generate App Icons
+      run: |
+        ICON_SRC="app/src/main/res/drawable/app_icon_forestry.jpg"
+        ICON_DEST="iosApp/iosApp/Assets.xcassets/AppIcon.appiconset"
+        mkdir -p $ICON_DEST
+        magick convert $ICON_SRC -resize 40x40 $ICON_DEST/icon-40.png
+        magick convert $ICON_SRC -resize 60x60 $ICON_DEST/icon-60.png
+        magick convert $ICON_SRC -resize 58x58 $ICON_DEST/icon-58.png
+        magick convert $ICON_SRC -resize 87x87 $ICON_DEST/icon-87.png
+        magick convert $ICON_SRC -resize 80x80 $ICON_DEST/icon-80.png
+        magick convert $ICON_SRC -resize 120x120 $ICON_DEST/icon-120.png
+        magick convert $ICON_SRC -resize 180x180 $ICON_DEST/icon-180.png
+        magick convert $ICON_SRC -resize 1024x1024 $ICON_DEST/icon-1024.png
+
+    # Biên dịch Release Framework cho iPhone (Tắt daemon để tránh treo máy)
     - name: Build Shared Framework
       run: ./gradlew :composeApp:linkReleaseFrameworkIosArm64 --no-daemon --stacktrace --info
 
