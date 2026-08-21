@@ -21,12 +21,16 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
 
+    # Thiết lập môi trường Android SDK tối giản để tránh lỗi Service trên MacOS
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
+
     - name: Make gradlew executable
       run: chmod +x gradlew
 
-    # Biên dịch Release Framework cho iPhone (Tắt daemon để tránh treo máy)
-    - name: Build Framework
-      run: ./gradlew :composeApp:assembleComposeAppReleaseFrameworkIosArm64 --no-daemon --stacktrace --info
+    # Sử dụng task chuẩn của Compose Multiplatform: linkReleaseFrameworkIosArm64
+    - name: Build Shared Framework
+      run: ./gradlew :composeApp:linkReleaseFrameworkIosArm64 --no-daemon --stacktrace --info
 
     - name: Build Xcode Project
       run: |
