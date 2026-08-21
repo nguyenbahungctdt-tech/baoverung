@@ -93,7 +93,7 @@ fun LoginScreen(
                         Text(currentSession.displayName, fontWeight = FontWeight.ExtraBold, fontSize = 22.sp)
                         Text("Đơn vị: ${currentSession.unit}", fontSize = 14.sp)
                         Button(onClick = onForceSync, modifier = Modifier.fillMaxWidth()) {
-                            Icon(Icons.Default.CloudSync, null)
+                            Icon(Icons.Default.Sync, null)
                             Spacer(modifier = Modifier.width(8.dp))
                             Text("ĐỒNG BỘ DỮ LIỆU")
                         }
@@ -111,7 +111,7 @@ fun LoginScreen(
                         OutlinedTextField(value = emailInput, onValueChange = { emailInput = it }, label = { Text("Gmail") }, leadingIcon = { Icon(Icons.Default.Email, null) }, modifier = Modifier.fillMaxWidth())
                         OutlinedTextField(value = phoneInput, onValueChange = { phoneInput = it }, label = { Text("Số điện thoại") }, leadingIcon = { Icon(Icons.Default.Phone, null) }, modifier = Modifier.fillMaxWidth(), keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
                         
-                        OutlinedTextField(value = keyInput, onValueChange = { keyInput = it }, label = { Text("Mã kích hoạt") }, leadingIcon = { Icon(Icons.Default.VpnKey, null) }, modifier = Modifier.fillMaxWidth())
+                        OutlinedTextField(value = keyInput, onValueChange = { keyInput = it }, label = { Text("Mã kích hoạt") }, leadingIcon = { Icon(Icons.Default.Key, null) }, modifier = Modifier.fillMaxWidth())
 
                         if (errorMessage != null) {
                             Text(errorMessage!!, color = MaterialTheme.colorScheme.error, fontSize = 12.sp, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)

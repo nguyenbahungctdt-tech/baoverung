@@ -166,7 +166,7 @@ fun MapScreen(
                 Icon(Icons.Default.Add, contentDescription = null)
             }
             FloatingActionButton(onClick = { onToggleGpxTracking() }) {
-                Icon(if (isTrackingGpx) Icons.Default.Stop else Icons.Default.PlayArrow, contentDescription = null)
+                Icon(if (isTrackingGpx) Icons.Default.Pause else Icons.Default.PlayArrow, contentDescription = null)
             }
         }
         
