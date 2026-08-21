@@ -8,7 +8,7 @@ import kotlin.math.roundToLong
  */
 actual fun formatNumber(value: Double, decimals: Int): String {
     if (value.isNaN()) return "0"
-    val power = 10.0.pow(decimals)
+    val power = 10.0.pow(decimals.toDouble())
     val rounded = (value * power).roundToLong().toDouble() / power
     return rounded.toString()
 }
