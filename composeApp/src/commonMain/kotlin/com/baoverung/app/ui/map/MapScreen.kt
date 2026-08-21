@@ -102,6 +102,7 @@ fun MapScreen(
     onToggleGpxTracking: () -> Unit,
     onOpenAddWaypoint: () -> Unit,
     onOpenPatrolForm: () -> Unit,
+    onOpenGisLayers: () -> Unit,
     uiSettings: MapUiSettings = MapUiSettings(),
     modifier: Modifier = Modifier
 ) {
@@ -162,6 +163,9 @@ fun MapScreen(
             horizontalAlignment = Alignment.End,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            FloatingActionButton(onClick = { onOpenGisLayers() }, containerColor = MaterialTheme.colorScheme.tertiary) {
+                Icon(Icons.Default.Layers, contentDescription = null)
+            }
             FloatingActionButton(onClick = { onOpenPatrolForm() }, containerColor = MaterialTheme.colorScheme.error) {
                 Icon(Icons.Default.Add, contentDescription = null)
             }

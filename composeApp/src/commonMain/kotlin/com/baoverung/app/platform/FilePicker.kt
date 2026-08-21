@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 /**
  * Giao diện chọn tệp đa nền tảng
  */
-expect class FilePicker {
+expect class FilePicker() {
     @Composable
     fun registerPicker(onFileSelected: (String?) -> Unit)
     

@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -14,6 +15,7 @@ import com.baoverung.app.ui.map.MapScreen
 import com.baoverung.app.ui.map.MeasurementMode
 import com.baoverung.app.ui.navigation.Screen
 import com.baoverung.app.ui.patrol.PatrolLogFormScreen
+import com.baoverung.app.ui.gis_layers.GisLayersScreen
 import com.baoverung.app.ui.theme.MyApplicationTheme
 import com.baoverung.app.platform.PlatformSettings
 import com.baoverung.app.ui.MainViewModel
@@ -57,21 +59,22 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                     centerLon = 108.4378,
                     zoomLevel = 15f,
                     onMapChange = { _, _, _ -> },
-                    currentLocation = null,
+                    currentLocation = viewModel.currentLocation.collectAsState().value,
                     compassAzimuth = 0f,
                     measurementMode = MeasurementMode.NONE,
                     measurementPoints = emptyList(),
                     targetNavPoint = null,
-                    isTrackingGpx = false,
+                    isTrackingGpx = viewModel.isTrackingGpx.collectAsState().value,
                     trackedPoints = emptyList(),
                     selectedMapSource = "Google Satellite",
                     onSelectMapSource = {},
                     onSetMeasurementMode = {},
                     onAddMeasurementPoint = {},
                     onClearMeasurement = {},
-                    onToggleGpxTracking = {},
+                    onToggleGpxTracking = { viewModel.toggleGpxTracking() },
                     onOpenAddWaypoint = {},
-                    onOpenPatrolForm = { navController.navigate(Screen.PatrolForm.route) }
+                    onOpenPatrolForm = { navController.navigate(Screen.PatrolForm.route) },
+                    onOpenGisLayers = { navController.navigate(Screen.GisLayers.route) }
                 )
             }
 
@@ -84,6 +87,19 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                     zoneDegrees = 3,
                     onSubmitPatrolLog = { _, _, _, _, _, _, _, _, _ -> 
                         navController.popBackStack()
+                    },
+                    onBack = { navController.popBackStack() }
+                )
+            }
+
+            composable(Screen.GisLayers.route) {
+                val layers by viewModel.gisLayers.collectAsState()
+                GisLayersScreen(
+                    layers = layers,
+                    onToggleVisibility = { /* TODO */ },
+                    onDeleteLayer = { /* TODO */ },
+                    onImportFile = { path ->
+                        // Logic nhập file sẽ được triển khai trong repository
                     },
                     onBack = { navController.popBackStack() }
                 )

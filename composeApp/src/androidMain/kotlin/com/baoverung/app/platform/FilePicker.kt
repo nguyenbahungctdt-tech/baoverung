@@ -4,9 +4,8 @@ import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 
-actual class FilePicker {
+actual class FilePicker actual constructor() {
     private var launcher: androidx.activity.result.ActivityResultLauncher<String>? = null
 
     @Composable
