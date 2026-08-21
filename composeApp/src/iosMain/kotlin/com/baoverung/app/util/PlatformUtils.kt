@@ -1,17 +1,14 @@
 package com.baoverung.app.util
 
+import kotlin.math.pow
+import kotlin.math.roundToLong
+
 /**
- * Triển khai định dạng số an toàn cho iOS
+ * Triển khai định dạng số sử dụng thư viện chuẩn Kotlin
  */
 actual fun formatNumber(value: Double, decimals: Int): String {
-    // Sử dụng cách chuyển đổi đơn giản để tránh lỗi variadic arguments trong Kotlin/Native
-    val power = 10.0.pow(decimals.toDouble())
-    val rounded = (value * power).toLong().toDouble() / power
+    if (value.isNaN()) return "0"
+    val power = 10.0.pow(decimals)
+    val rounded = (value * power).roundToLong().toDouble() / power
     return rounded.toString()
-}
-
-private fun Double.pow(exponent: Double): Double {
-    var result = 1.0
-    repeat(exponent.toInt()) { result *= this }
-    return result
 }
