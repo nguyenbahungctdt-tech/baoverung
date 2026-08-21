@@ -36,7 +36,7 @@ jobs:
         ICON_DEST="iosApp/iosApp/Assets.xcassets/AppIcon.appiconset"
         mkdir -p $ICON_DEST
         
-        # Tạo các file ảnh PNG từ ảnh gốc
+        # Create PNG images from source
         magick convert $ICON_SRC -resize 40x40 $ICON_DEST/icon-40.png
         magick convert $ICON_SRC -resize 60x60 $ICON_DEST/icon-60.png
         magick convert $ICON_SRC -resize 58x58 $ICON_DEST/icon-58.png
@@ -46,7 +46,7 @@ jobs:
         magick convert $ICON_SRC -resize 180x180 $ICON_DEST/icon-180.png
         magick convert $ICON_SRC -resize 1024x1024 $ICON_DEST/icon-1024.png
         
-        # Tạo tệp Contents.json để Xcode nhận diện ảnh
+        # Create Contents.json for Xcode
         cat > $ICON_DEST/Contents.json << 'EOF'
         {
           "images" : [
@@ -63,8 +63,8 @@ jobs:
           "info" : { "version" : 1, "author" : "xcode" }
         }
         EOF
-
-        # Tạo tệp Info.plist (bắt buộc để Xcode xác nhận thư mục asset hợp lệ)
+        
+        # Create info.plist (required for asset catalog recognition)
         cat > $ICON_DEST/Info.plist << 'EOF'
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -72,6 +72,12 @@ jobs:
         <dict/>
         </plist>
         EOF
+
+        # Verify all icon files were created
+        if [ $(ls -1 $ICON_DEST/*.png 2>/dev/null | wc -l) -eq 0 ]; then
+          echo "ERROR: No PNG files generated!"
+          exit 1
+        fi
 
     # Biên dịch Release Framework cho iPhone
     - name: Build Shared Framework
