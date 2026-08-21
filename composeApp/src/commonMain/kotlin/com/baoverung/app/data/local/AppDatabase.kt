@@ -1,10 +1,7 @@
 package com.baoverung.app.data.local
 
 import androidx.room.*
-import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.baoverung.app.data.local.entity.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
 
 @Database(
@@ -13,7 +10,10 @@ import kotlinx.coroutines.flow.Flow
         TrackLogEntity::class,
         PatrolLogEntity::class,
         DailyJournalEntity::class,
-        GisLayerEntity::class
+        GisLayerEntity::class,
+        FloraFaunaLogEntity::class,
+        NaturalImpactLogEntity::class,
+        PolygonEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -25,6 +25,9 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun patrolLogDao(): PatrolLogDao
     abstract fun dailyJournalDao(): DailyJournalDao
     abstract fun gisLayerDao(): GisLayerDao
+    abstract fun floraFaunaLogDao(): FloraFaunaLogDao
+    abstract fun naturalImpactLogDao(): NaturalImpactLogDao
+    abstract fun polygonDao(): PolygonDao
 }
 
 /**
@@ -44,6 +47,9 @@ interface WaypointDao {
     
     @Delete
     suspend fun delete(waypoint: WaypointEntity)
+
+    @Query("SELECT * FROM waypoints WHERE id = :id")
+    suspend fun getById(id: Long): WaypointEntity?
 }
 
 @Dao
@@ -68,6 +74,9 @@ interface PatrolLogDao {
     
     @Delete
     suspend fun delete(patrol: PatrolLogEntity)
+
+    @Query("SELECT * FROM patrol_logs WHERE id = :id")
+    suspend fun getById(id: Long): PatrolLogEntity?
 }
 
 @Dao
@@ -80,6 +89,9 @@ interface DailyJournalDao {
     
     @Delete
     suspend fun delete(journal: DailyJournalEntity)
+
+    @Query("SELECT * FROM daily_journals WHERE id = :id")
+    suspend fun getById(id: Long): DailyJournalEntity?
 }
 
 @Dao
@@ -94,12 +106,44 @@ interface GisLayerDao {
     suspend fun delete(layer: GisLayerEntity)
 }
 
-fun getAppDatabase(
-    builder: RoomDatabase.Builder<AppDatabase>
-): AppDatabase {
-    return builder
-        .setDriver(BundledSQLiteDriver())
-        .setQueryCoroutineContext(Dispatchers.IO)
-        .fallbackToDestructiveMigration(true)
-        .build()
+@Dao
+interface FloraFaunaLogDao {
+    @Query("SELECT * FROM flora_fauna_logs ORDER BY timestampUtc DESC")
+    fun getAllLogs(): Flow<List<FloraFaunaLogEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(log: FloraFaunaLogEntity)
+
+    @Delete
+    suspend fun delete(log: FloraFaunaLogEntity)
+
+    @Query("SELECT * FROM flora_fauna_logs WHERE id = :id")
+    suspend fun getById(id: Long): FloraFaunaLogEntity?
+}
+
+@Dao
+interface NaturalImpactLogDao {
+    @Query("SELECT * FROM natural_impact_logs ORDER BY timestampUtc DESC")
+    fun getAllLogs(): Flow<List<NaturalImpactLogEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(log: NaturalImpactLogEntity)
+
+    @Delete
+    suspend fun delete(log: NaturalImpactLogEntity)
+
+    @Query("SELECT * FROM natural_impact_logs WHERE id = :id")
+    suspend fun getById(id: Long): NaturalImpactLogEntity?
+}
+
+@Dao
+interface PolygonDao {
+    @Query("SELECT * FROM polygons ORDER BY timestampUtc DESC")
+    fun getAllPolygons(): Flow<List<PolygonEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(polygon: PolygonEntity)
+
+    @Delete
+    suspend fun delete(polygon: PolygonEntity)
 }

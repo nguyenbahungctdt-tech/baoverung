@@ -49,6 +49,7 @@ jobs:
         magick convert $ICON_SRC -resize 87x87 $ICON_DEST/icon-87.png
         magick convert $ICON_SRC -resize 80x80 $ICON_DEST/icon-80.png
         magick convert $ICON_SRC -resize 120x120 $ICON_DEST/icon-120.png
+        magick convert $ICON_SRC -resize 120x120 $ICON_DEST/icon-120-2x.png
         magick convert $ICON_SRC -resize 180x180 $ICON_DEST/icon-180.png
         magick convert $ICON_SRC -resize 1024x1024 $ICON_DEST/icon-1024.png
         
@@ -62,7 +63,7 @@ jobs:
             { "filename" : "icon-87.png", "idiom" : "iphone", "scale" : "3x", "size" : "29x29" },
             { "filename" : "icon-80.png", "idiom" : "iphone", "scale" : "2x", "size" : "40x40" },
             { "filename" : "icon-120.png", "idiom" : "iphone", "scale" : "3x", "size" : "40x40" },
-            { "filename" : "icon-120.png", "idiom" : "iphone", "scale" : "2x", "size" : "60x60" },
+            { "filename" : "icon-120-2x.png", "idiom" : "iphone", "scale" : "2x", "size" : "60x60" },
             { "filename" : "icon-180.png", "idiom" : "iphone", "scale" : "3x", "size" : "60x60" },
             { "filename" : "icon-1024.png", "idiom" : "ios-marketing", "scale" : "1x", "size" : "1024x1024" }
           ],
@@ -72,10 +73,8 @@ jobs:
         EOF
         
         # Verify all icon files were created
-        if [ $(ls -1 $ICON_DEST/*.png 2>/dev/null | wc -l) -ne 8 ]; then
-          echo "ERROR: Expected 8 PNG files, but found $(ls -1 $ICON_DEST/*.png 2>/dev/null | wc -l)"
-          # Note: The provided solution said 9, but let's count: 40,60,58,87,80,120,180,1024 -> 8 files.
-          # Wait, icon-120 is used twice in the JSON. So 8 files are correct.
+        if [ $(ls -1 $ICON_DEST/*.png 2>/dev/null | wc -l) -ne 9 ]; then
+          echo "ERROR: Expected 9 PNG files, but found $(ls -1 $ICON_DEST/*.png 2>/dev/null | wc -l)"
           exit 1
         fi
 

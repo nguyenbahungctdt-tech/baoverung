@@ -1,6 +1,5 @@
 package com.baoverung.app.ui
 
-import com.baoverung.app.data.local.AppDatabase
 import com.baoverung.app.data.local.entity.*
 import com.baoverung.app.data.model.*
 import com.baoverung.app.repository.SurveyRepository
@@ -25,6 +24,10 @@ class MainViewModel(
     val patrolLogs = repository.patrolLogs.stateIn(scope, SharingStarted.WhileSubscribed(5000), emptyList())
     val dailyJournals = repository.dailyJournals.stateIn(scope, SharingStarted.WhileSubscribed(5000), emptyList())
     val gisLayers = repository.gisLayers.stateIn(scope, SharingStarted.WhileSubscribed(5000), emptyList())
+    
+    val floraFaunaLogs = repository.floraFaunaLogs.stateIn(scope, SharingStarted.WhileSubscribed(5000), emptyList())
+    val naturalImpactLogs = repository.naturalImpactLogs.stateIn(scope, SharingStarted.WhileSubscribed(5000), emptyList())
+    val polygons = repository.polygons.stateIn(scope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     fun updateLocation(lat: Double, lon: Double) {
         _currentLocation.value = GpsPoint(lat, lon)

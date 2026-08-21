@@ -10,6 +10,10 @@ class SurveyRepository(private val database: AppDatabase) {
     val patrolLogs: Flow<List<PatrolLogEntity>> = database.patrolLogDao().getAllPatrolLogs()
     val dailyJournals: Flow<List<DailyJournalEntity>> = database.dailyJournalDao().getAllDailyJournals()
     val gisLayers: Flow<List<GisLayerEntity>> = database.gisLayerDao().getAllGisLayers()
+    
+    val floraFaunaLogs: Flow<List<FloraFaunaLogEntity>> = database.floraFaunaLogDao().getAllLogs()
+    val naturalImpactLogs: Flow<List<NaturalImpactLogEntity>> = database.naturalImpactLogDao().getAllLogs()
+    val polygons: Flow<List<PolygonEntity>> = database.polygonDao().getAllPolygons()
 
     suspend fun saveWaypoint(waypoint: WaypointEntity) {
         database.waypointDao().insert(waypoint)

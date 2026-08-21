@@ -79,6 +79,74 @@ data class PatrolLogEntity(
     val isSynced: Boolean = false
 )
 
+@Entity(tableName = "flora_fauna_logs")
+@Serializable
+data class FloraFaunaLogEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val latitude: Double,
+    val longitude: Double,
+    val altitude: Double = 0.0,
+    val vn2000X: Double = 0.0,
+    val vn2000Y: Double = 0.0,
+    val accuracy: Float = 0f,
+    val satellitesCount: Int = 0,
+    val officerName: String,
+    val appearanceDescription: String,
+    val features: String = "",
+    val count: String = "",
+    val habitatType: String = "",
+    val temperature: String = "",
+    val humidity: String = "",
+    val canopyCover: String = "",
+    val surroundingPlants: String = "",
+    val specimens: String = "",
+    val photoPath: String? = null,
+    val timestampUtc: Long = Clock.System.now().toEpochMilliseconds(),
+    val displayColorHex: String = "#FF2E7D32",
+    val isSynced: Boolean = false
+)
+
+@Entity(tableName = "natural_impact_logs")
+@Serializable
+data class NaturalImpactLogEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val latitude: Double,
+    val longitude: Double,
+    val altitude: Double = 0.0,
+    val vn2000X: Double = 0.0,
+    val vn2000Y: Double = 0.0,
+    val accuracy: Float = 0f,
+    val satellitesCount: Int = 0,
+    val officerName: String,
+    val cause: String,
+    val otherCause: String = "",
+    val affectedArea: String = "",
+    val statusBefore: String = "",
+    val statusAfter: String = "",
+    val resourceDamage: String = "",
+    val occurrenceTime: String = "",
+    val photoPath: String? = null,
+    val timestampUtc: Long = Clock.System.now().toEpochMilliseconds(),
+    val displayColorHex: String = "#FFFBC02D",
+    val isSynced: Boolean = false
+)
+
+@Entity(tableName = "polygons")
+@Serializable
+data class PolygonEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val title: String,
+    val description: String = "",
+    val pointsJson: String,
+    val areaSquareMeters: Double,
+    val perimeterMeters: Double = 0.0,
+    val centroidLat: Double,
+    val centroidLon: Double,
+    val timestampUtc: Long = Clock.System.now().toEpochMilliseconds(),
+    val displayColorHex: String = "#FF388E3C",
+    val isSynced: Boolean = false
+)
+
 @Entity(tableName = "daily_journals")
 @Serializable
 data class DailyJournalEntity(

@@ -12,6 +12,7 @@ import com.baoverung.app.ui.navigation.Screen
 import com.baoverung.app.ui.patrol.*
 import com.baoverung.app.ui.gis_layers.GisLayersScreen
 import com.baoverung.app.ui.converter.CoordinateConverterScreen
+import com.baoverung.app.ui.waypoints.WaypointsAndTracksScreen
 import com.baoverung.app.ui.theme.MyApplicationTheme
 import com.baoverung.app.platform.PlatformSettings
 import com.baoverung.app.ui.MainViewModel
@@ -92,40 +93,6 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                 )
             }
 
-            composable(Screen.FloraFaunaForm.route) {
-                val loc by viewModel.currentLocation.collectAsState()
-                FloraFaunaFormScreen(
-                    currentLocation = loc,
-                    userName = userSession.displayName,
-                    onSubmit = { _, _, _, _, _, _, _, _, _, _, _ -> 
-                        navController.popBackStack()
-                    },
-                    onBack = { navController.popBackStack() }
-                )
-            }
-
-            composable(Screen.NaturalImpactForm.route) {
-                val loc by viewModel.currentLocation.collectAsState()
-                NaturalImpactFormScreen(
-                    currentLocation = loc,
-                    userName = userSession.displayName,
-                    onSubmit = { _, _, _, _, _, _ -> 
-                        navController.popBackStack()
-                    },
-                    onBack = { navController.popBackStack() }
-                )
-            }
-
-            composable(Screen.DailyJournal.route) {
-                DailyJournalFormScreen(
-                    userName = userSession.displayName,
-                    onSave = { _, _, _ -> 
-                        navController.popBackStack()
-                    },
-                    onBack = { navController.popBackStack() }
-                )
-            }
-
             composable(Screen.GisLayers.route) {
                 val layers by viewModel.gisLayers.collectAsState()
                 GisLayersScreen(
@@ -141,6 +108,31 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
             
             composable(Screen.CoordinateConverter.route) {
                 CoordinateConverterScreen(
+                    onBack = { navController.popBackStack() }
+                )
+            }
+
+            composable(Screen.WaypointsData.route) {
+                val wps by viewModel.waypoints.collectAsState()
+                val trks by viewModel.trackLogs.collectAsState()
+                val patrols by viewModel.patrolLogs.collectAsState()
+                val flora by viewModel.floraFaunaLogs.collectAsState()
+                val impact by viewModel.naturalImpactLogs.collectAsState()
+                val poly by viewModel.polygons.collectAsState()
+                val journals by viewModel.dailyJournals.collectAsState()
+
+                WaypointsAndTracksScreen(
+                    waypoints = wps,
+                    trackLogs = trks,
+                    patrolLogs = patrols,
+                    floraFaunaLogs = flora,
+                    naturalImpactLogs = impact,
+                    polygons = poly,
+                    dailyJournals = journals,
+                    onDeleteWaypoint = { /* TODO */ },
+                    onDeleteTrackLog = { /* TODO */ },
+                    onDeletePatrolLog = { /* TODO */ },
+                    onNavigateToPoint = { /* TODO */ },
                     onBack = { navController.popBackStack() }
                 )
             }
