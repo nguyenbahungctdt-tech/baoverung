@@ -38,7 +38,7 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.coil.compose)
             implementation(libs.androidx.navigation.compose)
-            implementation("com.squareup.okio:okio:3.9.0")
+            implementation(libs.okio)
         }
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)

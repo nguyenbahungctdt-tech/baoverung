@@ -13,7 +13,7 @@ lifecycleRuntimeCompose = "2.8.4"
 activityCompose = "1.9.1"
 composeBom = "2024.08.00"
 googleDevtoolsKsp = "2.0.21-1.0.25"
-navigationCompose = "2.8.0-alpha10"
+navigationCompose = "2.8.0-alpha02"
 roomRuntime = "2.7.0-alpha10"
 roomKtx = "2.7.0-alpha10"
 roomCompiler = "2.7.0-alpha10"
@@ -66,7 +66,7 @@ androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+androidx-navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomRuntime" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
