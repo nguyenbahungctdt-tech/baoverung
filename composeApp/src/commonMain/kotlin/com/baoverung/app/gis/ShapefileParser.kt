@@ -46,80 +46,86 @@ object ShapefileParser {
             return
         }
 
+        val shpHandle = fs.openReadOnly(shpFilePath)
         try {
-            fs.openReadOnly(shpFilePath).use<okio.FileHandle, Unit> { shpHandle ->
-                fs.openReadOnly(dbfPath).use<okio.FileHandle, Unit> { dbfHandle ->
-                    val shpLen = shpHandle.size()
-                    val header = Buffer()
-                    shpHandle.read(0, header, 100)
-                    
-                    if (header.readInt() == 9994) {
-                        val dbfHeader = readDbfHeader(dbfHandle)
-                        var pos = 100L
-                        var recordIdx = 0
+            val dbfHandle = fs.openReadOnly(dbfPath)
+            try {
+                val shpLen = shpHandle.size()
+                val header = Buffer()
+                shpHandle.read(0, header, 100)
+                
+                if (header.readInt() == 9994) {
+                    val dbfHeader = readDbfHeader(dbfHandle)
+                    var pos = 100L
+                    var recordIdx = 0
 
-                        while (pos + 8 <= shpLen) {
-                            val recHeader = Buffer()
-                            shpHandle.read(pos, recHeader, 8)
-                            recHeader.readInt() // recordNum
-                            val contentWords = recHeader.readInt()
-                            val contentLen = contentWords * 2L
-                            
-                            if (contentLen > 2 * 1024 * 1024 || contentLen <= 0) {
-                                pos += 8 + contentLen
-                                recordIdx++
-                                continue
+                    while (pos + 8 <= shpLen) {
+                        val recHeader = Buffer()
+                        shpHandle.read(pos, recHeader, 8)
+                        recHeader.readInt() // recordNum
+                        val contentWords = recHeader.readInt()
+                        val contentLen = contentWords * 2L
+                        
+                        if (contentLen > 2 * 1024 * 1024 || contentLen <= 0) {
+                            pos += 8 + contentLen
+                            recordIdx++
+                            continue
+                        }
+
+                        val recordData = Buffer()
+                        shpHandle.read(pos + 8, recordData, contentLen)
+                        val shapeType = recordData.readIntLe()
+
+                        val points = mutableListOf<GpsPoint>()
+                        var gType = GisShapeType.POINT
+
+                        when (shapeType) {
+                            1, 11, 21 -> { // Point
+                                gType = GisShapeType.POINT
+                                val x = recordData.readDoubleLe()
+                                val y = recordData.readDoubleLe()
+                                points.add(toGpsPoint(x, y, detectedCm, zoneDegrees))
                             }
-
-                            val recordData = Buffer()
-                            shpHandle.read(pos + 8, recordData, contentLen)
-                            val shapeType = recordData.readIntLe()
-
-                            val points = mutableListOf<GpsPoint>()
-                            var gType = GisShapeType.POINT
-
-                            when (shapeType) {
-                                1, 11, 21 -> { // Point
-                                    gType = GisShapeType.POINT
-                                    val x = recordData.readDoubleLe()
-                                    val y = recordData.readDoubleLe()
-                                    points.add(toGpsPoint(x, y, detectedCm, zoneDegrees))
-                                }
-                                3, 5, 13, 15, 23, 25 -> { // Polyline/Polygon
-                                    gType = if (shapeType == 3 || shapeType == 13 || shapeType == 23) GisShapeType.LINE else GisShapeType.POLYGON
-                                    if (recordData.size >= 40) {
-                                        recordData.skip(32) // bbox
-                                        val numParts = recordData.readIntLe()
-                                        val numPoints = recordData.readIntLe()
-                                        recordData.skip(numParts * 4L) // skip parts offsets
-                                        
-                                        val ptsToRead = min(numPoints, MAX_POINTS)
-                                        for (i in 0 until ptsToRead) {
-                                            val x = recordData.readDoubleLe()
-                                            val y = recordData.readDoubleLe()
-                                            points.add(toGpsPoint(x, y, detectedCm, zoneDegrees))
-                                        }
+                            3, 5, 13, 15, 23, 25 -> { // Polyline/Polygon
+                                gType = if (shapeType == 3 || shapeType == 13 || shapeType == 23) GisShapeType.LINE else GisShapeType.POLYGON
+                                if (recordData.size >= 40) {
+                                    recordData.skip(32) // bbox
+                                    val numParts = recordData.readIntLe()
+                                    val numPoints = recordData.readIntLe()
+                                    recordData.skip(numParts * 4L) // skip parts offsets
+                                    
+                                    val ptsToRead = min(numPoints, MAX_POINTS)
+                                    for (i in 0 until ptsToRead) {
+                                        val x = recordData.readDoubleLe()
+                                        val y = recordData.readDoubleLe()
+                                        points.add(toGpsPoint(x, y, detectedCm, zoneDegrees))
                                     }
                                 }
                             }
-
-                            if (points.isNotEmpty() && recordIdx < dbfHeader.recordCount) {
-                                val attrs = readDbfRecord(dbfHandle, dbfHeader, recordIdx)
-                                val minLat = points.minOf { it.latitude }
-                                val maxLat = points.maxOf { it.latitude }
-                                val minLon = points.minOf { it.longitude }
-                                val maxLon = points.maxOf { it.longitude }
-                                onFeature(GisFeature("shp_$recordIdx", layerId, gType, points, attrs, minLat, maxLat, minLon, maxLon))
-                            }
-
-                            pos += 8 + contentLen
-                            recordIdx++
-                            onProgress?.invoke(pos.toInt(), shpLen.toInt())
                         }
+
+                        if (points.isNotEmpty() && recordIdx < dbfHeader.recordCount) {
+                            val attrs = readDbfRecord(dbfHandle, dbfHeader, recordIdx)
+                            val minLat = points.minOf { it.latitude }
+                            val maxLat = points.maxOf { it.latitude }
+                            val minLon = points.minOf { it.longitude }
+                            val maxLon = points.maxOf { it.longitude }
+                            onFeature(GisFeature("shp_$recordIdx", layerId, gType, points, attrs, minLat, maxLat, minLon, maxLon))
+                        }
+
+                        pos += 8 + contentLen
+                        recordIdx++
+                        onProgress?.invoke(pos.toInt(), shpLen.toInt())
                     }
                 }
+            } finally {
+                try { dbfHandle.close() } catch (e: Exception) {}
             }
-        } catch (e: Exception) { println("ShapefileParser: Parse error: ${e.message}") }
+        } catch (e: Exception) { 
+            println("ShapefileParser: Parse error: ${e.message}") 
+        } finally {
+            try { shpHandle.close() } catch (e: Exception) {}
+        }
     }
 
     private fun toGpsPoint(x: Double, y: Double, cm: Double, zd: Int): GpsPoint {
@@ -178,10 +184,13 @@ object ShapefileParser {
 
     fun getFieldNames(dbfPath: String): List<String> {
         val fs = FileSystem.SYSTEM
+        val handle = fs.openReadOnly(dbfPath.toPath())
         return try {
-            fs.openReadOnly(dbfPath.toPath()).use<okio.FileHandle, List<String>> { handle ->
-                readDbfHeader(handle).fields.map { it.first }
-            }
-        } catch (e: Exception) { emptyList() }
+            readDbfHeader(handle).fields.map { it.first }
+        } catch (e: Exception) { 
+            emptyList() 
+        } finally {
+            try { handle.close() } catch (e: Exception) {}
+        }
     }
 }
