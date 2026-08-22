@@ -30,80 +30,81 @@ object MifParser {
         val attributes = if (fs.exists(midFilePath)) parseMidFile(midPathStr) else emptyList()
         
         try {
-            fs.source(mifFilePath).buffer().use { source ->
+            val source = fs.source(mifFilePath).buffer()
+            source.use { s ->
                 var featureCount = 0
                 var inData = false
                 
                 while (true) {
-                    val line = source.readUtf8Line() ?: break
+                    val line = s.readUtf8Line() ?: break
                     if (line.trim().uppercase() == "DATA") {
                         inData = true
                         break
                     }
                 }
                 
-                if (!inData) return
+                if (inData) {
+                    while (true) {
+                        val line = s.readUtf8Line() ?: break
+                        val l = line.trim()
+                        if (l.isEmpty()) continue
+                        val up = l.uppercase()
 
-                while (true) {
-                    val line = source.readUtf8Line() ?: break
-                    val l = line.trim()
-                    if (l.isEmpty()) continue
-                    val up = l.uppercase()
-
-                    when {
-                        up.startsWith("POINT") -> {
-                            val parts = l.split("\\s+".toRegex())
-                            if (parts.size >= 3) {
-                                val x = parts[1].toDoubleOrNull() ?: 0.0
-                                val y = parts[2].toDoubleOrNull() ?: 0.0
-                                val pt = toG(x, y, centralMeridian, zoneDegrees)
-                                onFeatureParsed(GisFeature("mif_${layerId}_$featureCount", layerId, GisShapeType.POINT, listOf(pt), attributes.getOrNull(featureCount) ?: emptyMap()))
-                                featureCount++
+                        when {
+                            up.startsWith("POINT") -> {
+                                val parts = l.split("\\s+".toRegex())
+                                if (parts.size >= 3) {
+                                    val x = parts[1].toDoubleOrNull() ?: 0.0
+                                    val y = parts[2].toDoubleOrNull() ?: 0.0
+                                    val pt = toG(x, y, centralMeridian, zoneDegrees)
+                                    onFeatureParsed(GisFeature("mif_${layerId}_$featureCount", layerId, GisShapeType.POINT, listOf(pt), attributes.getOrNull(featureCount) ?: emptyMap()))
+                                    featureCount++
+                                }
                             }
-                        }
-                        up.startsWith("LINE") -> {
-                            val parts = l.split("\\s+".toRegex())
-                            if (parts.size >= 5) {
-                                val p1 = toG(parts[1].toDoubleOrNull() ?: 0.0, parts[2].toDoubleOrNull() ?: 0.0, centralMeridian, zoneDegrees)
-                                val p2 = toG(parts[3].toDoubleOrNull() ?: 0.0, parts[4].toDoubleOrNull() ?: 0.0, centralMeridian, zoneDegrees)
-                                onFeatureParsed(GisFeature("mif_${layerId}_$featureCount", layerId, GisShapeType.LINE, listOf(p1, p2), attributes.getOrNull(featureCount) ?: emptyMap()))
-                                featureCount++
+                            up.startsWith("LINE") -> {
+                                val parts = l.split("\\s+".toRegex())
+                                if (parts.size >= 5) {
+                                    val p1 = toG(parts[1].toDoubleOrNull() ?: 0.0, parts[2].toDoubleOrNull() ?: 0.0, centralMeridian, zoneDegrees)
+                                    val p2 = toG(parts[3].toDoubleOrNull() ?: 0.0, parts[4].toDoubleOrNull() ?: 0.0, centralMeridian, zoneDegrees)
+                                    onFeatureParsed(GisFeature("mif_${layerId}_$featureCount", layerId, GisShapeType.LINE, listOf(p1, p2), attributes.getOrNull(featureCount) ?: emptyMap()))
+                                    featureCount++
+                                }
                             }
-                        }
-                        up.startsWith("REGION") || up.startsWith("PLINE") -> {
-                            val isRegion = up.startsWith("REGION")
-                            val parts = l.split("\\s+".toRegex())
-                            val numSections = if (parts.size > 1) parts.last().toIntOrNull() ?: 1 else 1
-                            val allPoints = mutableListOf<GpsPoint>()
-                            
-                            repeat(numSections) {
-                                val countLine = source.readUtf8Line()?.trim() ?: ""
-                                val numPoints = countLine.toIntOrNull() ?: 0
-                                repeat(numPoints) {
-                                    val pLine = source.readUtf8Line()?.trim() ?: ""
-                                    val p = pLine.split("\\s+".toRegex())
-                                    if (p.size >= 2) {
-                                        val x = p[0].toDoubleOrNull() ?: 0.0
-                                        val y = p[1].toDoubleOrNull() ?: 0.0
-                                        allPoints.add(toG(x, y, centralMeridian, zoneDegrees))
+                            up.startsWith("REGION") || up.startsWith("PLINE") -> {
+                                val isRegion = up.startsWith("REGION")
+                                val parts = l.split("\\s+".toRegex())
+                                val numSections = if (parts.size > 1) parts.last().toIntOrNull() ?: 1 else 1
+                                val allPoints = mutableListOf<GpsPoint>()
+                                
+                                repeat(numSections) {
+                                    val countLine = s.readUtf8Line()?.trim() ?: ""
+                                    val numPoints = countLine.toIntOrNull() ?: 0
+                                    repeat(numPoints) {
+                                        val pLine = s.readUtf8Line()?.trim() ?: ""
+                                        val p = pLine.split("\\s+".toRegex())
+                                        if (p.size >= 2) {
+                                            val x = p[0].toDoubleOrNull() ?: 0.0
+                                            val y = p[1].toDoubleOrNull() ?: 0.0
+                                            allPoints.add(toG(x, y, centralMeridian, zoneDegrees))
+                                        }
                                     }
                                 }
-                            }
-                            
-                            if (allPoints.isNotEmpty()) {
-                                var minLat = 90.0; var maxLat = -90.0; var minLon = 180.0; var maxLon = -180.0
-                                for (p in allPoints) {
-                                    if (p.latitude < minLat) minLat = p.latitude
-                                    if (p.latitude > maxLat) maxLat = p.latitude
-                                    if (p.longitude < minLon) minLon = p.longitude
-                                    if (p.longitude > maxLon) maxLon = p.longitude
+                                
+                                if (allPoints.isNotEmpty()) {
+                                    var minLat = 90.0; var maxLat = -90.0; var minLon = 180.0; var maxLon = -180.0
+                                    for (p in allPoints) {
+                                        if (p.latitude < minLat) minLat = p.latitude
+                                        if (p.latitude > maxLat) maxLat = p.latitude
+                                        if (p.longitude < minLon) minLon = p.longitude
+                                        if (p.longitude > maxLon) maxLon = p.longitude
+                                    }
+                                    onFeatureParsed(GisFeature("mif_${layerId}_$featureCount", layerId, if (isRegion) GisShapeType.POLYGON else GisShapeType.LINE, allPoints, attributes.getOrNull(featureCount) ?: emptyMap(), minLat, maxLat, minLon, maxLon))
+                                    featureCount++
                                 }
-                                onFeatureParsed(GisFeature("mif_${layerId}_$featureCount", layerId, if (isRegion) GisShapeType.POLYGON else GisShapeType.LINE, allPoints, attributes.getOrNull(featureCount) ?: emptyMap(), minLat, maxLat, minLon, maxLon))
-                                featureCount++
                             }
                         }
+                        if (featureCount % 100 == 0) onProgress?.invoke(featureCount, -1)
                     }
-                    if (featureCount % 100 == 0) onProgress?.invoke(featureCount, -1)
                 }
             }
         } catch (e: Exception) {
@@ -114,9 +115,10 @@ object MifParser {
     private fun parseMidFile(midPath: String): List<Map<String, String>> {
         val res = mutableListOf<Map<String, String>>()
         try {
-            FileSystem.SYSTEM.source(midPath.toPath()).buffer().use { source ->
+            val source = FileSystem.SYSTEM.source(midPath.toPath()).buffer()
+            source.use { s ->
                 while (true) {
-                    val line = source.readUtf8Line() ?: break
+                    val line = s.readUtf8Line() ?: break
                     val parts = line.split(",")
                     val row = mutableMapOf<String, String>()
                     parts.forEachIndexed { idx, s -> row["Col$idx"] = s.trim().removeSurrounding("\"") }
