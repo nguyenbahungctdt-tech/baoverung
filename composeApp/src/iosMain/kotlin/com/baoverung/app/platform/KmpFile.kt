@@ -43,7 +43,7 @@ actual class KmpFile actual constructor(actual val path: String) {
         
         val bytes = data.bytes?.let { it.asCPointer<platform.posix.int8_tVar>()!! } ?: return 0
         for (i in 0 until data.length.toInt()) {
-            buffer[i] = bytes[i]
+            buffer[i] = bytes[i].toByte()
         }
         handle.closeFile()
         return data.length.toInt()

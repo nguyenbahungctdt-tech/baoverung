@@ -111,6 +111,8 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
             
             composable(Screen.CoordinateConverter.route) {
                 CoordinateConverterScreen(
+                    centralMeridian = 107.75,
+                    zoneDegrees = 3,
                     onBack = { navController.popBackStack() }
                 )
             }

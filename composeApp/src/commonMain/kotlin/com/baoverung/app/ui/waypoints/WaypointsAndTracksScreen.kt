@@ -15,21 +15,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.baoverung.app.data.local.entity.WaypointEntity
+import coil3.compose.AsyncImage
+import com.baoverung.app.data.local.entity.*
 import com.baoverung.app.data.model.GpsPoint
-import com.baoverung.app.ui.MainViewModel
 import com.baoverung.app.util.toDateTimeString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WaypointsAndTracksScreen(
-    viewModel: MainViewModel,
+    waypoints: List<WaypointEntity>,
+    trackLogs: List<TrackLogEntity>,
+    patrolLogs: List<PatrolLogEntity>,
+    floraFaunaLogs: List<FloraFaunaLogEntity>,
+    naturalImpactLogs: List<NaturalImpactLogEntity>,
+    polygons: List<PolygonEntity>,
+    dailyJournals: List<DailyJournalEntity>,
+    onDeleteWaypoint: (Long) -> Unit,
+    onDeleteTrackLog: (Long) -> Unit,
+    onDeletePatrolLog: (Long) -> Unit,
     onNavigateToPoint: (GpsPoint) -> Unit,
     onBack: () -> Unit
 ) {
-    val waypoints by viewModel.waypoints.collectAsState()
-    val trackLogs by viewModel.trackLogs.collectAsState()
-    
     var selectedTab by remember { mutableIntStateOf(0) }
     val tabs = listOf("ĐIỂM", "TRACKLOG", "VÙNG", "SỰ VỤ")
 
