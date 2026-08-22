@@ -4,7 +4,9 @@ import okio.FileSystem
 import okio.Path.Companion.toPath
 import okio.Source
 import platform.Foundation.*
+import kotlinx.cinterop.*
 
+@OptIn(ExperimentalForeignApi::class)
 actual class KmpFile actual constructor(actual val path: String) {
     private val fileManager = NSFileManager.defaultManager
 
@@ -20,13 +22,14 @@ actual class KmpFile actual constructor(actual val path: String) {
 
     actual fun readBytes(): ByteArray {
         val data = NSData.dataWithContentsOfFile(path) ?: return ByteArray(0)
-        return data.bytes?.let { bytes ->
+        val bytes: CPointer<ByteVar>? = data.bytes?.reinterpret()
+        return if (bytes != null) {
             ByteArray(data.length.toInt()).apply {
                 for (i in indices) {
-                    this[i] = bytes.asCPointer<platform.posix.int8_tVar>()!![i]
+                    this[i] = bytes[i]
                 }
             }
-        } ?: ByteArray(0)
+        } else ByteArray(0)
     }
 
     actual fun readText(): String {
@@ -41,9 +44,11 @@ actual class KmpFile actual constructor(actual val path: String) {
         val data = handle.readDataOfLength(buffer.size.toULong())
         if (data.length == 0uL) return 0
         
-        val bytes = data.bytes?.let { it.asCPointer<platform.posix.int8_tVar>()!! } ?: return 0
+        val bytes: CPointer<ByteVar>? = data.bytes?.reinterpret()
+        if (bytes == null) return 0
+        
         for (i in 0 until data.length.toInt()) {
-            buffer[i] = bytes[i].toByte()
+            buffer[i] = bytes[i]
         }
         handle.closeFile()
         return data.length.toInt()
