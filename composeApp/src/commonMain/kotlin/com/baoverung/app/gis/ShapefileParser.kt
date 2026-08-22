@@ -179,9 +179,8 @@ object ShapefileParser {
     fun getFieldNames(dbfPath: String): List<String> {
         val fs = FileSystem.SYSTEM
         return try {
-            val handle = fs.openReadOnly(dbfPath.toPath())
-            handle.use { h ->
-                readDbfHeader(h).fields.map { it.first }
+            fs.openReadOnly(dbfPath.toPath()).use { handle ->
+                readDbfHeader(handle).fields.map { it.first }
             }
         } catch (e: Exception) { emptyList() }
     }

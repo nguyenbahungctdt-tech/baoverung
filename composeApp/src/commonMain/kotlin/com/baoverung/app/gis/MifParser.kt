@@ -30,13 +30,12 @@ object MifParser {
         val attributes = if (fs.exists(midFilePath)) parseMidFile(midPathStr) else emptyList()
         
         try {
-            val source = fs.source(mifFilePath).buffer()
-            source.use { s ->
+            fs.source(mifFilePath).buffer().use { source ->
                 var featureCount = 0
                 var inData = false
                 
                 while (true) {
-                    val line = s.readUtf8Line() ?: break
+                    val line = source.readUtf8Line() ?: break
                     if (line.trim().uppercase() == "DATA") {
                         inData = true
                         break
@@ -45,7 +44,7 @@ object MifParser {
                 
                 if (inData) {
                     while (true) {
-                        val line = s.readUtf8Line() ?: break
+                        val line = source.readUtf8Line() ?: break
                         val l = line.trim()
                         if (l.isEmpty()) continue
                         val up = l.uppercase()
@@ -77,10 +76,10 @@ object MifParser {
                                 val allPoints = mutableListOf<GpsPoint>()
                                 
                                 repeat(numSections) {
-                                    val countLine = s.readUtf8Line()?.trim() ?: ""
+                                    val countLine = source.readUtf8Line()?.trim() ?: ""
                                     val numPoints = countLine.toIntOrNull() ?: 0
                                     repeat(numPoints) {
-                                        val pLine = s.readUtf8Line()?.trim() ?: ""
+                                        val pLine = source.readUtf8Line()?.trim() ?: ""
                                         val p = pLine.split("\\s+".toRegex())
                                         if (p.size >= 2) {
                                             val x = p[0].toDoubleOrNull() ?: 0.0
