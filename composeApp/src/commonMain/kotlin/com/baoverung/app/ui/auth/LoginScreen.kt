@@ -123,6 +123,19 @@ fun LoginScreen(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
+                        Surface(
+                            color = MaterialTheme.colorScheme.primaryContainer,
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Text(
+                                "PHIÊN ĐĂNG NHẬP ĐANG HOẠT ĐỘNG",
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+                                fontWeight = FontWeight.Black,
+                                fontSize = 11.sp,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        }
+
                         Text(currentSession.displayName, fontWeight = FontWeight.ExtraBold, fontSize = 22.sp, color = MaterialTheme.colorScheme.primary)
                         
                         Column(horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.fillMaxWidth()) {
@@ -131,7 +144,22 @@ fun LoginScreen(
                             Text("Hạn dùng: ${currentSession.expiryDate}", fontSize = 14.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
                         }
 
-                        Button(onClick = onForceSync, modifier = Modifier.fillMaxWidth().height(54.dp), shape = RoundedCornerShape(12.dp)) {
+                        Button(
+                            onClick = { onLogin(currentSession.email, currentSession.displayName, currentSession.phoneNumber, currentSession.unit, currentSession.department, currentSession.registrationKey, currentSession.expiryDate, currentSession.permissions, currentSession.autoGpx, currentSession.canSync) },
+                            modifier = Modifier.fillMaxWidth().height(54.dp),
+                            shape = RoundedCornerShape(12.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                        ) {
+                            Icon(Icons.Default.ArrowForward, null)
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("VÀO ỨNG DỤNG", fontWeight = FontWeight.Bold)
+                        }
+
+                        OutlinedButton(
+                            onClick = onForceSync,
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
                             Icon(Icons.Default.CloudSync, null)
                             Spacer(modifier = Modifier.width(8.dp))
                             Text("ĐỒNG BỘ DỮ LIỆU", fontWeight = FontWeight.Bold)

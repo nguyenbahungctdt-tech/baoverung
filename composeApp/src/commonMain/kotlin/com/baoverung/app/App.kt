@@ -22,11 +22,35 @@ import com.baoverung.app.ui.MainViewModel
 fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
     MyApplicationTheme {
         val navController = rememberNavController()
-        var userSession by remember { mutableStateOf(UserSession(isLoggedIn = false)) }
+        
+        // Initial state from platform settings
+        val initialSession = remember {
+            val isLoggedIn = platformSettings.getString("last_email", "").isNotEmpty()
+            UserSession(
+                displayName = platformSettings.getString("last_name", ""),
+                email = platformSettings.getString("last_email", ""),
+                phoneNumber = platformSettings.getString("last_phone", ""),
+                unit = platformSettings.getString("last_unit", ""),
+                department = platformSettings.getString("last_dept", ""),
+                registrationKey = platformSettings.getString("last_key", ""),
+                isLoggedIn = isLoggedIn
+            )
+        }
+        
+        var userSession by remember { mutableStateOf(initialSession) }
+        
+        // Auto-navigation logic
+        LaunchedEffect(userSession.isLoggedIn) {
+            if (userSession.isLoggedIn) {
+                navController.navigate(Screen.Map.route) {
+                    popUpTo(Screen.Login.route) { inclusive = true }
+                }
+            }
+        }
         
         NavHost(
             navController = navController,
-            startDestination = Screen.Login.route
+            startDestination = if (userSession.isLoggedIn) Screen.Map.route else Screen.Login.route
         ) {
             composable(Screen.Login.route) {
                 LoginScreen(
