@@ -1,7 +1,10 @@
 package com.baoverung.app.data.local
 
 import androidx.room.*
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.baoverung.app.data.local.entity.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
 
 @Database(
@@ -146,4 +149,14 @@ interface PolygonDao {
 
     @Delete
     suspend fun delete(polygon: PolygonEntity)
+}
+
+fun getAppDatabase(
+    builder: RoomDatabase.Builder<AppDatabase>
+): AppDatabase {
+    return builder
+        .setDriver(BundledSQLiteDriver())
+        .setQueryCoroutineContext(Dispatchers.IO)
+        .fallbackToDestructiveMigration(true)
+        .build()
 }
