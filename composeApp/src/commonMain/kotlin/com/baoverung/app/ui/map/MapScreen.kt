@@ -33,8 +33,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.graphics.graphicsLayer
 import com.baoverung.app.data.model.*
-import com.baoverung.app.gis.GisAreaCalculator
-import com.baoverung.app.util.GeometryUtils
 import com.baoverung.app.util.format
 import kotlin.math.*
 
@@ -46,15 +44,6 @@ private fun latLonToWorld(lat: Double, lon: Double, zoom: Float): DOffset {
     val latRad = lat.coerceIn(-85.05112878, 85.05112878) * PI / 180.0
     val y = (1.0 - ln(tan(latRad) + 1.0 / cos(latRad)) / PI) / 2.0 * scale
     return DOffset(x, y)
-}
-
-private fun worldToLatLon(worldX: Double, worldY: Double, zoom: Float): Pair<Double, Double> {
-    val scale = 256.0 * 2.0.pow(zoom.toDouble())
-    val lon = (worldX / scale) * 360.0 - 180.0
-    val n = PI - 2.0 * PI * (worldY / scale)
-    val latRad = atan(sinh(n))
-    val lat = latRad * 180.0 / PI
-    return Pair(lat, lon)
 }
 
 @Composable
@@ -103,6 +92,8 @@ fun MapScreen(
     onOpenAddWaypoint: () -> Unit,
     onOpenPatrolForm: () -> Unit,
     onOpenGisLayers: () -> Unit,
+    onOpenSettings: () -> Unit,
+    onOpenDataManagement: () -> Unit,
     uiSettings: MapUiSettings = MapUiSettings(),
     modifier: Modifier = Modifier
 ) {
@@ -163,6 +154,12 @@ fun MapScreen(
             horizontalAlignment = Alignment.End,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            FloatingActionButton(onClick = { onOpenSettings() }, containerColor = MaterialTheme.colorScheme.secondary) {
+                Icon(Icons.Default.Settings, contentDescription = null)
+            }
+            FloatingActionButton(onClick = { onOpenDataManagement() }, containerColor = MaterialTheme.colorScheme.primaryContainer) {
+                Icon(Icons.Default.History, contentDescription = null)
+            }
             FloatingActionButton(onClick = { onOpenGisLayers() }, containerColor = MaterialTheme.colorScheme.tertiary) {
                 Icon(Icons.Default.Layers, contentDescription = null)
             }

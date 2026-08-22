@@ -3,6 +3,10 @@ package com.baoverung.app.util
 import androidx.compose.ui.geometry.Offset
 import kotlin.math.*
 
+/**
+ * Utility for GIS geometry operations.
+ * Ported to Kotlin Multiplatform.
+ */
 object GeometryUtils {
     /**
      * Calculates the minimum distance from point P to line segment AB
@@ -38,7 +42,6 @@ object GeometryUtils {
 
     /**
      * Douglas-Peucker simplification algorithm
-     * Reduces the number of points in a curve while keeping its shape.
      */
     fun simplifyPoints(points: List<Offset>, epsilon: Float): List<Offset> {
         if (points.size < 3) return points

@@ -5,53 +5,69 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.baoverung.app.data.local.entity.DailyJournalEntity
+import com.baoverung.app.ui.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DailyJournalFormScreen(
-    userName: String,
-    onSave: (dateStr: String, content: String, notes: String) -> Unit,
+    viewModel: MainViewModel,
     onBack: () -> Unit
 ) {
-    val scrollState = rememberScrollState()
+    var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
-    var notes by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("LẬP NHẬT KÝ TUẦN TRA", fontWeight = FontWeight.Black, fontSize = 17.sp) },
+                title = { Text("NHẬT KÝ HÀNG NGÀY", fontWeight = FontWeight.Black) },
                 navigationIcon = {
-                    IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, null) }
+                    IconButton(onClick = onBack) {
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Quay lại")
+                    }
                 },
                 actions = {
-                    Button(
-                        onClick = {
-                            onSave("2025-01-01", content, notes)
-                        },
-                        shape = RoundedCornerShape(10.dp)
-                    ) {
-                        Text("LƯU", fontSize = 12.sp, fontWeight = FontWeight.Black)
+                    IconButton(onClick = { /* Save logic using viewModel */ }) {
+                        Icon(Icons.Default.Save, contentDescription = "Lưu")
                     }
                 }
             )
         }
     ) { padding ->
         Column(
-            modifier = Modifier.padding(padding).padding(horizontal = 16.dp).verticalScroll(scrollState),
+            modifier = Modifier.padding(padding).padding(16.dp).verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Spacer(modifier = Modifier.height(8.dp))
-            OutlinedTextField(value = content, onValueChange = { content = it }, label = { Text("Nội dung nhật ký") }, modifier = Modifier.fillMaxWidth(), minLines = 5)
-            OutlinedTextField(value = notes, onValueChange = { notes = it }, label = { Text("Ghi chú") }, modifier = Modifier.fillMaxWidth())
+            OutlinedTextField(
+                value = title,
+                onValueChange = { title = it },
+                label = { Text("Tiêu đề nhật ký") },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp)
+            )
+
+            OutlinedTextField(
+                value = content,
+                onValueChange = { content = it },
+                label = { Text("Nội dung chi tiết") },
+                modifier = Modifier.fillMaxWidth().height(200.dp),
+                shape = RoundedCornerShape(12.dp)
+            )
+
+            Button(
+                onClick = { onBack() },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text("HOÀN TẤT")
+            }
         }
     }
 }

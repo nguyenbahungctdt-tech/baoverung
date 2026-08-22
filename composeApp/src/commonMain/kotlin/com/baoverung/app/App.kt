@@ -13,6 +13,7 @@ import com.baoverung.app.ui.patrol.*
 import com.baoverung.app.ui.gis_layers.GisLayersScreen
 import com.baoverung.app.ui.converter.CoordinateConverterScreen
 import com.baoverung.app.ui.waypoints.WaypointsAndTracksScreen
+import com.baoverung.app.ui.settings.SettingsScreen
 import com.baoverung.app.ui.theme.MyApplicationTheme
 import com.baoverung.app.platform.PlatformSettings
 import com.baoverung.app.ui.MainViewModel
@@ -74,7 +75,9 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                     onToggleGpxTracking = { viewModel.toggleGpxTracking() },
                     onOpenAddWaypoint = {},
                     onOpenPatrolForm = { navController.navigate(Screen.PatrolForm.route) },
-                    onOpenGisLayers = { navController.navigate(Screen.GisLayers.route) }
+                    onOpenGisLayers = { navController.navigate(Screen.GisLayers.route) },
+                    onOpenSettings = { navController.navigate(Screen.Settings.route) },
+                    onOpenDataManagement = { navController.navigate(Screen.WaypointsData.route) }
                 )
             }
 
@@ -134,6 +137,13 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                     onDeletePatrolLog = { /* TODO */ },
                     onNavigateToPoint = { /* TODO */ },
                     onBack = { navController.popBackStack() }
+                )
+            }
+
+            composable(Screen.Settings.route) {
+                SettingsScreen(
+                    onBack = { navController.popBackStack() },
+                    onOpenConverter = { navController.navigate(Screen.CoordinateConverter.route) }
                 )
             }
         }
