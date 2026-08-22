@@ -51,6 +51,13 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.core.ktx)
+            
+            // Firebase for Android - Using standard implementation instead of platform() in KMP block if it fails
+            implementation(libs.firebase.auth)
+            implementation(libs.firebase.firestore)
+            implementation(libs.firebase.database)
+            implementation(libs.firebase.storage)
+            implementation(libs.kotlinx.coroutines.play.services)
         }
         iosMain.dependencies {
         }

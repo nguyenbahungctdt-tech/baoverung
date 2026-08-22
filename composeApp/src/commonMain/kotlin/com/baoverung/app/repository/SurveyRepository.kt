@@ -27,8 +27,16 @@ class SurveyRepository(private val database: AppDatabase) {
         database.trackLogDao().insert(track)
     }
 
+    suspend fun deleteTrackLog(track: TrackLogEntity) {
+        database.trackLogDao().delete(track)
+    }
+
     suspend fun savePatrolLog(patrol: PatrolLogEntity) {
         database.patrolLogDao().insert(patrol)
+    }
+
+    suspend fun deletePatrolLog(patrol: PatrolLogEntity) {
+        database.patrolLogDao().delete(patrol)
     }
 
     suspend fun saveDailyJournal(journal: DailyJournalEntity) {

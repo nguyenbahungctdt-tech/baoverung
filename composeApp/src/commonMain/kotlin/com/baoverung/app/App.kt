@@ -32,6 +32,7 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                 LoginScreen(
                     currentSession = userSession,
                     platformSettings = platformSettings,
+                    cloudSyncRepository = viewModel.cloudSync,
                     onLogin = { email, name, phone, unit, dept, key, expiry, perms, autoGpx, canSync ->
                         userSession = UserSession(
                             displayName = name, email = email, phoneNumber = phone, 
@@ -39,6 +40,14 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                             expiryDate = expiry, permissions = perms, autoGpx = autoGpx,
                             canSync = canSync, isLoggedIn = true
                         )
+                        // Save last login info
+                        platformSettings.putString("last_name", name)
+                        platformSettings.putString("last_email", email)
+                        platformSettings.putString("last_phone", phone)
+                        platformSettings.putString("last_unit", unit)
+                        platformSettings.putString("last_dept", dept)
+                        platformSettings.putString("last_key", key)
+                        
                         navController.navigate(Screen.Map.route)
                     },
                     onForceSync = {},
@@ -54,6 +63,7 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
             composable(Screen.Map.route) {
                 val loc by viewModel.currentLocation.collectAsState()
                 val isTracking by viewModel.isTrackingGpx.collectAsState()
+                val gisLayers by viewModel.gisLayers.collectAsState()
                 
                 MapScreen(
                     centerLat = 11.9404,
@@ -62,11 +72,13 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                     onMapChange = { _, _, _ -> },
                     currentLocation = loc,
                     compassAzimuth = 0f,
+                    satellitesVisible = 0,
                     measurementMode = MeasurementMode.NONE,
                     measurementPoints = emptyList(),
                     targetNavPoint = null,
                     isTrackingGpx = isTracking,
                     trackedPoints = emptyList(),
+                    gisLayers = gisLayers,
                     selectedMapSource = "Google Satellite",
                     onSelectMapSource = {},
                     onSetMeasurementMode = {},
@@ -134,10 +146,12 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                     naturalImpactLogs = impact,
                     polygons = poly,
                     dailyJournals = journals,
-                    onDeleteWaypoint = { /* TODO */ },
-                    onDeleteTrackLog = { /* TODO */ },
-                    onDeletePatrolLog = { /* TODO */ },
-                    onNavigateToPoint = { /* TODO */ },
+                    onDeleteWaypoint = { viewModel.deleteWaypoint(it) },
+                    onDeleteTrackLog = { viewModel.deleteTrackLog(it) },
+                    onDeletePatrolLog = { viewModel.deletePatrolLog(it) },
+                    onNavigateToPoint = { pt ->
+                        // Navigation logic
+                    },
                     onBack = { navController.popBackStack() }
                 )
             }

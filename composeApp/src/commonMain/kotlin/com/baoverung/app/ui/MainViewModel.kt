@@ -11,8 +11,11 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val repository: SurveyRepository,
+    private val cloudSyncRepository: com.baoverung.app.repository.CloudSyncRepository,
     private val scope: CoroutineScope
 ) {
+    val cloudSync = cloudSyncRepository
+    
     private val _currentLocation = MutableStateFlow<GpsPoint?>(null)
     val currentLocation = _currentLocation.asStateFlow()
 
@@ -46,14 +49,32 @@ class MainViewModel(
                     description = description,
                     latitude = loc.latitude,
                     longitude = loc.longitude,
-                    altitude = 0.0,
-                    vn2000X = 0.0,
+                    altitude = loc.altitude,
+                    vn2000X = 0.0, // Should calculate this
                     vn2000Y = 0.0,
-                    accuracy = 0f,
-                    satellitesCount = 0,
+                    accuracy = loc.accuracy,
+                    satellitesCount = loc.satellitesCount,
                     userEmail = userEmail
                 )
             )
+        }
+    }
+
+    fun deleteWaypoint(id: Long) {
+        scope.launch(Dispatchers.IO) {
+            waypoints.value.find { it.id == id }?.let { repository.deleteWaypoint(it) }
+        }
+    }
+
+    fun deleteTrackLog(id: Long) {
+        scope.launch(Dispatchers.IO) {
+            trackLogs.value.find { it.id == id }?.let { repository.deleteTrackLog(it) }
+        }
+    }
+
+    fun deletePatrolLog(id: Long) {
+        scope.launch(Dispatchers.IO) {
+            patrolLogs.value.find { it.id == id }?.let { repository.deletePatrolLog(it) }
         }
     }
 }

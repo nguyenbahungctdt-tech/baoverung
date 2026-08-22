@@ -2,7 +2,7 @@ plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.google.devtools.ksp)
-  alias(libs.plugins.google.services)
+  // alias(libs.plugins.google.services) // Disabled until google-services.json is provided
 }
 
 android {

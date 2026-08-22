@@ -21,7 +21,8 @@ class MainActivity : ComponentActivity() {
             val platformSettings = remember { PlatformSettings(applicationContext) }
             val db = remember { getAppDatabase(DatabaseBuilder(applicationContext).createBuilder()) }
             val repository = remember { SurveyRepository(db) }
-            val viewModel = remember { MainViewModel(repository, MainScope()) }
+            val cloudSyncRepository = remember { com.baoverung.app.repository.CloudSyncRepository() }
+            val viewModel = remember { MainViewModel(repository, cloudSyncRepository, MainScope()) }
             
             App(viewModel, platformSettings)
         }

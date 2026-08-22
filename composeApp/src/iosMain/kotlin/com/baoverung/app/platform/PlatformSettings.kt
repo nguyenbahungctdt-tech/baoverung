@@ -11,15 +11,16 @@ actual class PlatformSettings {
     }
 
     actual fun putString(key: String, value: String) {
-        userDefaults.setObject(value, key)
+        userDefaults.setObject(value, forKey = key)
     }
 
     actual fun getBoolean(key: String, defaultValue: Boolean): Boolean {
-        return if (userDefaults.objectForKey(key) != null) userDefaults.boolForKey(key) else defaultValue
+        return if (userDefaults.objectForKey(key) == null) defaultValue 
+        else userDefaults.boolForKey(key)
     }
 
     actual fun putBoolean(key: String, value: Boolean) {
-        userDefaults.setBool(value, key)
+        userDefaults.setBool(value, forKey = key)
     }
 
     actual fun getDeviceId(): String {
