@@ -103,16 +103,24 @@ fun OnlineMapTileLayer(
     val minY = floor(topWorld / tileSize).toInt()
     val maxY = floor((topWorld + heightPx) / tileSize).toInt()
 
+    val density = androidx.compose.ui.platform.LocalDensity.current
+
     Box(modifier = Modifier.fillMaxSize()) {
         for (tx in minX..maxX) {
             for (ty in minY..maxY) {
                 val screenX = (tx * tileSize - leftWorld).toFloat()
                 val screenY = (ty * tileSize - topWorld).toFloat()
-                val url = "https://mt1.google.com/vt/lyrs=s&x=$tx&y=$ty&z=$tileZoom" // Simplify for now
+                val url = "https://mt1.google.com/vt/lyrs=s&x=$tx&y=$ty&z=$tileZoom"
+                
                 AsyncImage(
                     model = url,
                     contentDescription = null,
-                    modifier = Modifier.offset(screenX.dp, screenY.dp).size((tileSize).dp),
+                    modifier = Modifier
+                        .offset(
+                            x = with(density) { screenX.toDp() },
+                            y = with(density) { screenY.toDp() }
+                        )
+                        .size(with(density) { tileSize.toFloat().toDp() }),
                     contentScale = ContentScale.FillBounds
                 )
             }
