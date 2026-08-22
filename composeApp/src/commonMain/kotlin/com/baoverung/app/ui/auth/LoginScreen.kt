@@ -28,6 +28,10 @@ import com.baoverung.app.platform.PlatformSettings
 import com.baoverung.app.repository.CloudSyncRepository
 import kotlinx.coroutines.launch
 
+import org.jetbrains.compose.resources.painterResource
+import baoverung.composeapp.generated.resources.Res
+import baoverung.composeapp.generated.resources.app_icon_forestry
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
@@ -93,7 +97,7 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            // App Logo
+            // App Logo - Using actual resource
             Surface(
                 modifier = Modifier.size(110.dp),
                 shape = CircleShape,
@@ -102,7 +106,11 @@ fun LoginScreen(
                 shadowElevation = 12.dp
             ) {
                 Box(contentAlignment = Alignment.Center) {
-                    Icon(Icons.Default.Forest, "Logo", modifier = Modifier.size(70.dp), tint = MaterialTheme.colorScheme.primary)
+                    Image(
+                        painter = painterResource(Res.drawable.app_icon_forestry),
+                        contentDescription = "Logo",
+                        modifier = Modifier.size(85.dp).clip(CircleShape)
+                    )
                 }
             }
 
@@ -139,9 +147,13 @@ fun LoginScreen(
                         Text(currentSession.displayName, fontWeight = FontWeight.ExtraBold, fontSize = 22.sp, color = MaterialTheme.colorScheme.primary)
                         
                         Column(horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.fillMaxWidth()) {
+                            Text("Họ tên: ${currentSession.displayName}", fontSize = 14.sp)
+                            Text("Gmail: ${currentSession.email}", fontSize = 14.sp)
                             Text("Đơn vị: ${currentSession.unit}", fontSize = 14.sp)
                             Text("Bộ phận: ${currentSession.department}", fontSize = 14.sp)
-                            Text("Hạn dùng: ${currentSession.expiryDate}", fontSize = 14.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                            if (currentSession.expiryDate.isNotEmpty()) {
+                                Text("Hạn dùng: ${currentSession.expiryDate}", fontSize = 14.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                            }
                         }
 
                         Button(

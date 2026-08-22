@@ -39,31 +39,34 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
         
         var userSession by remember { mutableStateOf(initialSession) }
         
-        // Auto-navigation logic
-        LaunchedEffect(userSession.isLoggedIn) {
-            if (userSession.isLoggedIn) {
-                navController.navigate(Screen.Map.route) {
-                    popUpTo(Screen.Login.route) { inclusive = true }
-                }
-            }
-        }
-        
+        // Use a fixed start destination to avoid NavHost recreation issues
+        // We'll handle initial routing via LaunchedEffect
         NavHost(
             navController = navController,
-            startDestination = if (userSession.isLoggedIn) Screen.Map.route else Screen.Login.route
+            startDestination = Screen.Login.route
         ) {
             composable(Screen.Login.route) {
+                // If already logged in, navigate immediately
+                LaunchedEffect(Unit) {
+                    if (userSession.isLoggedIn) {
+                        navController.navigate(Screen.Map.route) {
+                            popUpTo(Screen.Login.route) { inclusive = true }
+                        }
+                    }
+                }
+
                 LoginScreen(
                     currentSession = userSession,
                     platformSettings = platformSettings,
                     cloudSyncRepository = viewModel.cloudSync,
                     onLogin = { email, name, phone, unit, dept, key, expiry, perms, autoGpx, canSync ->
-                        userSession = UserSession(
+                        val newSession = UserSession(
                             displayName = name, email = email, phoneNumber = phone, 
                             unit = unit, department = dept, registrationKey = key,
                             expiryDate = expiry, permissions = perms, autoGpx = autoGpx,
                             canSync = canSync, isLoggedIn = true
                         )
+                        userSession = newSession
                         // Save last login info
                         platformSettings.putString("last_name", name)
                         platformSettings.putString("last_email", email)
@@ -72,15 +75,22 @@ fun App(viewModel: MainViewModel, platformSettings: PlatformSettings) {
                         platformSettings.putString("last_dept", dept)
                         platformSettings.putString("last_key", key)
                         
-                        navController.navigate(Screen.Map.route)
+                        navController.navigate(Screen.Map.route) {
+                            popUpTo(Screen.Login.route) { inclusive = true }
+                        }
                     },
                     onForceSync = {},
                     onResetSync = {},
                     onContinueOffline = {
                         userSession = UserSession(displayName = "Khách", isLoggedIn = true, isOfflineMode = true)
-                        navController.navigate(Screen.Map.route)
+                        navController.navigate(Screen.Map.route) {
+                            popUpTo(Screen.Login.route) { inclusive = true }
+                        }
                     },
-                    onLogout = { userSession = UserSession(isLoggedIn = false) }
+                    onLogout = { 
+                        userSession = UserSession(isLoggedIn = false)
+                        platformSettings.putString("last_email", "") // Clear login state
+                    }
                 )
             }
 
