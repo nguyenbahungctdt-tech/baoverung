@@ -47,8 +47,8 @@ object ShapefileParser {
         }
 
         try {
-            fs.openReadOnly(shpFilePath).use { shpHandle ->
-                fs.openReadOnly(dbfPath).use { dbfHandle ->
+            fs.openReadOnly(shpFilePath).use<okio.FileHandle, Unit> { shpHandle ->
+                fs.openReadOnly(dbfPath).use<okio.FileHandle, Unit> { dbfHandle ->
                     val shpLen = shpHandle.size()
                     val header = Buffer()
                     shpHandle.read(0, header, 100)
@@ -179,7 +179,7 @@ object ShapefileParser {
     fun getFieldNames(dbfPath: String): List<String> {
         val fs = FileSystem.SYSTEM
         return try {
-            fs.openReadOnly(dbfPath.toPath()).use { handle ->
+            fs.openReadOnly(dbfPath.toPath()).use<okio.FileHandle, List<String>> { handle ->
                 readDbfHeader(handle).fields.map { it.first }
             }
         } catch (e: Exception) { emptyList() }

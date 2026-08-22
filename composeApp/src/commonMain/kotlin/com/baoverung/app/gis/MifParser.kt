@@ -30,7 +30,7 @@ object MifParser {
         val attributes = if (fs.exists(midFilePath)) parseMidFile(midPathStr) else emptyList()
         
         try {
-            fs.source(mifFilePath).buffer().use { source ->
+            fs.source(mifFilePath).buffer().use<okio.BufferedSource, Unit> { source ->
                 var featureCount = 0
                 var inData = false
                 
@@ -114,8 +114,7 @@ object MifParser {
     private fun parseMidFile(midPath: String): List<Map<String, String>> {
         val res = mutableListOf<Map<String, String>>()
         try {
-            val source = FileSystem.SYSTEM.source(midPath.toPath()).buffer()
-            source.use { s ->
+            FileSystem.SYSTEM.source(midPath.toPath()).buffer().use<okio.BufferedSource, Unit> { s ->
                 while (true) {
                     val line = s.readUtf8Line() ?: break
                     val parts = line.split(",")
