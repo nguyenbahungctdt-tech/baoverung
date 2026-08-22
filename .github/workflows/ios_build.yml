@@ -57,17 +57,18 @@ jobs:
         cat > $ICON_DEST/Contents.json << 'EOF'
         {
           "images" : [
-            { "filename" : "icon-40.png", "idiom" : "iphone", "scale" : "2x", "size" : "20x20" },
-            { "filename" : "icon-60.png", "idiom" : "iphone", "scale" : "3x", "size" : "20x20" },
-            { "filename" : "icon-58.png", "idiom" : "iphone", "scale" : "2x", "size" : "29x29" },
-            { "filename" : "icon-87.png", "idiom" : "iphone", "scale" : "3x", "size" : "29x29" },
-            { "filename" : "icon-80.png", "idiom" : "iphone", "scale" : "2x", "size" : "40x40" },
-            { "filename" : "icon-120.png", "idiom" : "iphone", "scale" : "3x", "size" : "40x40" },
-            { "filename" : "icon-120-2x.png", "idiom" : "iphone", "scale" : "2x", "size" : "60x60" },
-            { "filename" : "icon-180.png", "idiom" : "iphone", "scale" : "3x", "size" : "60x60" },
-            { "filename" : "icon-1024.png", "idiom" : "ios-marketing", "scale" : "1x", "size" : "1024x1024" }
+            { "filename" : "icon-40.png", "idiom" : "iphone", "scale" : "2x", "size" : "20x20", "platform" : "ios" },
+            { "filename" : "icon-60.png", "idiom" : "iphone", "scale" : "3x", "size" : "20x20", "platform" : "ios" },
+            { "filename" : "icon-58.png", "idiom" : "iphone", "scale" : "2x", "size" : "29x29", "platform" : "ios" },
+            { "filename" : "icon-87.png", "idiom" : "iphone", "scale" : "3x", "size" : "29x29", "platform" : "ios" },
+            { "filename" : "icon-80.png", "idiom" : "iphone", "scale" : "2x", "size" : "40x40", "platform" : "ios" },
+            { "filename" : "icon-120.png", "idiom" : "iphone", "scale" : "3x", "size" : "40x40", "platform" : "ios" },
+            { "filename" : "icon-120-2x.png", "idiom" : "iphone", "scale" : "2x", "size" : "60x60", "platform" : "ios" },
+            { "filename" : "icon-180.png", "idiom" : "iphone", "scale" : "3x", "size" : "60x60", "platform" : "ios" },
+            { "filename" : "icon-1024.png", "idiom" : "ios-marketing", "scale" : "1x", "size" : "1024x1024", "platform" : "ios" }
           ],
-          "info" : { "version" : 1, "author" : "xcode" }
+          "info" : { "version" : 1, "author" : "xcode" },
+          "properties" : { "provides-namespace" : true }
         }
         EOF
         
