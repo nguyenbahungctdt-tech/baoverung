@@ -82,8 +82,8 @@ object ShapefileParser {
                         when (shapeType) {
                             1, 11, 21 -> { // Point
                                 gType = GisShapeType.POINT
-                                val x = recordData.readDoubleLe()
-                                val y = recordData.readDoubleLe()
+                                val x = Double.fromBits(recordData.readLongLe())
+                                val y = Double.fromBits(recordData.readLongLe())
                                 points.add(toGpsPoint(x, y, detectedCm, zoneDegrees))
                             }
                             3, 5, 13, 15, 23, 25 -> { // Polyline/Polygon
@@ -96,8 +96,8 @@ object ShapefileParser {
                                     
                                     val ptsToRead = min(numPoints, MAX_POINTS)
                                     for (i in 0 until ptsToRead) {
-                                        val x = recordData.readDoubleLe()
-                                        val y = recordData.readDoubleLe()
+                                        val x = Double.fromBits(recordData.readLongLe())
+                                        val y = Double.fromBits(recordData.readLongLe())
                                         points.add(toGpsPoint(x, y, detectedCm, zoneDegrees))
                                     }
                                 }
