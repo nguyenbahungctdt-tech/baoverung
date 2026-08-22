@@ -30,7 +30,7 @@ object MifParser {
         val attributes = if (fs.exists(midFilePath)) parseMidFile(midPathStr) else emptyList()
         
         try {
-            fs.source(mifFilePath).buffer().use { source: okio.BufferedSource ->
+            fs.source(mifFilePath).buffer().use { source ->
                 var featureCount = 0
                 var inData = false
                 
