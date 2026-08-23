@@ -34,7 +34,7 @@
         <meta-data android:name="asset_statements" android:value="@string/asset_statements" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.baoverung.app.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyApplication">

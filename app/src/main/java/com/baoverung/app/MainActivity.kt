@@ -38,11 +38,14 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        android.util.Log.d("BVR", "MainActivity onCreate started")
         enableEdgeToEdge()
         
+        android.util.Log.d("BVR", "Checking permissions")
         checkAndRequestPermissions()
 
         setContent {
+            android.util.Log.d("BVR", "Setting content")
             val platformSettings = remember { PlatformSettings(applicationContext) }
             val db = remember { getAppDatabase(DatabaseBuilder(applicationContext).createBuilder()) }
             val repository = remember { SurveyRepository(db) }
@@ -53,14 +56,15 @@ class MainActivity : ComponentActivity() {
             
             // Check for Manage External Storage after UI loads
             LaunchedEffect(Unit) {
+                android.util.Log.d("BVR", "LaunchedEffect for storage")
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     if (!Environment.isExternalStorageManager()) {
+                        android.util.Log.d("BVR", "Requesting external storage management")
                         try {
                             val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
                             intent.addCategory("android.intent.category.DEFAULT")
                             intent.data = Uri.parse(String.format("package:%s", packageName))
                             startActivity(intent)
-                            Toast.makeText(this@MainActivity, "Vui lòng cho phép ứng dụng truy cập TẤT CẢ CÁC FILE để làm việc với bản đồ GIS", Toast.LENGTH_LONG).show()
                         } catch (e: Exception) {
                             val intent = Intent()
                             intent.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
